@@ -8,4 +8,7 @@ begin
    Bank_Accounts.Deposit(Account => Mattis_Account, Amount => 54);
    Balance := Bank_Accounts.Get_Balance(Mattis_Account);
    Ada.Text_IO.Put_Line(Integer'Image(Balance));
+   Bank_Accounts.Withdraw(Mattis_Account, -5); -- test proconditions
+   Balance := Bank_Accounts.Get_Balance(Mattis_Account);
+   Ada.Text_IO.Put_Line(Integer'Image(Balance));
 end main;
