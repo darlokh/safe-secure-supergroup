@@ -1,17 +1,29 @@
-package Bank_Accounts is
-    subtype Cents_Type is Integer;
-    type Account_Type is record
-        Balance: Cents_Type := 0;
-    end record;
-    
-    function Get_Balance(Account: Account_Type) return Cents_Type;
+package body Bank_Accounts is
+   
     -- Returns the current Balance from Account.
-    procedure Deposit(Account: in out Account_Type; Amount: Cents_Type);
-    -- Deposits Amount at the given Account.
-    procedure Withdraw(Account: in out Account_Type; Amount: Cents_Type);
-    -- Withdraws Amount from the given Account.
-    procedure Transfer(From: in out Account_Type; 
-                       To: in out Account_Type; 
-                       Amount: in Cents_Type);
-    -- Transfers Amount from Account From to Account To.
+   function Get_Balance(Account: Account_Type) return Cents_Type is
+   begin
+      return Account.Balance;
+   end Get_Balance;
+   
+    -- Deposits Amount at the given Account.   
+   procedure Deposit(Account: in out Account_Type; Amount: Cents_Type) is
+   begin
+      Account.Balance := Account.Balance + Amount;
+   end Deposit;
+  
+   -- Withdraws Amount from the given Account.
+   procedure Withdraw(Account: in out Account_Type; Amount: Cents_Type) is
+   begin
+      Account.Balance := Account.Balance - Amount;
+   end Withdraw;
+ 
+   -- Transfers Amount from Account From to Account To.
+   procedure Transfer(From: in out Account_Type; 
+                      To: in out Account_Type; 
+                      Amount: in Cents_Type) is
+   begin
+      From.Balance := From.Balance - Amount;
+      TO.Balance := To.Balance + Amount;
+   end Transfer;
 end Bank_Accounts;
