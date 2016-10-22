@@ -9,14 +9,11 @@ package body Deck is
 	end Get_Card;
 
 	procedure Draw_New_Card is
-		Variable : Integer; 
 		package RNG renames Random_Numbers;
 		New_Card : Card;
 	begin
-		Variable := RNG.Get_Random_Integer(4);
-		New_Card.Suit := Suit_Type'Val(Variable);
-		Variable := RNG.Get_Random_Integer(12)+1;
-		New_Card.Card := Variable;
+		New_Card.Suit := Suit_Type'Val(RNG.Get_Random_Integer(4));
+		New_Card.Card := RNG.Get_Random_Integer(12)+1;
 		Latest_Card := New_Card;
 	end Draw_New_Card;
 
