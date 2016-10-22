@@ -3,6 +3,7 @@
 *.xml
 *.db
 *.o
-./bin/*
-!./bin/.gitkeep
+bin/*
+!bin/.gitkeep
 *.*~
+.exes
