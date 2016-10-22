@@ -1,8 +1,0 @@
-*.ali
-*.exe
-*.xml
-*.db
-*.o
-./bin/*
-!./bin/.gitkeep
-*.*~
