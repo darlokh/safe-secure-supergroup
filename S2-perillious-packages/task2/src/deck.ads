@@ -10,7 +10,12 @@ package Deck is
    
    -- methods
    procedure Fill_Deck;
+   pragma Postcondition (Is_Empty = False);
+   
    function Draw_Card return Card;
+   pragma Precondition (Is_Empty = False);
+   
    function Is_Empty return Boolean;
+   
    procedure Print_Card(item : Card);
 end Deck;
