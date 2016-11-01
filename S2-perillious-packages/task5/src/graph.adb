@@ -1,11 +1,13 @@
 with Ada.Containers.Vectors;
 
 package body Graph is
-
    Graph : Vertex_Array (0);
+   
    package Edge_Vector is new Ada.Containers.Vectors
-     (Element_Type => Edge_Type,
-      Index_Type => Integer);
+     (Index_Type => Natural,
+      Element_Type => Edge_Type);
+   Edge_Vec   : Edge_Vector.Vector;
+   
    -- Stores the Vertex in the Graph. Raises a 
    -- Vertex_Already_In_Graph_Exception if it is already in the graph.
    procedure Add_Vertex(Vertex: Vertex_Type) is
