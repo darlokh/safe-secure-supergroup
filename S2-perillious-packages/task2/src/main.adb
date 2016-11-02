@@ -1,18 +1,31 @@
 with Deck;
 with Ada.Text_IO;
 
-procedure main is
-   New_Card : Deck.Card;
+procedure Main is
+   Card1 : Deck.Card;
+   Card2 : Deck.Card;
+   Card3 : Deck.Card;
+
 begin
    Deck.Fill_Deck;
-   for Integer in 1..3 loop
-      if not Deck.Is_Empty then
-         New_Card := Deck.Draw_Card;
-         Deck.Print_Card(New_Card);
-         Ada.Text_IO.Put_Line(" ");
-      else
-         Ada.Text_IO.Put_Line("Deck is already empty!");
-         exit;
-      end if;
-   end loop;
-end main;
+
+   Card1 := Deck.Draw_Card;
+   Deck.Print_Card(Card1);
+   Ada.Text_IO.Put_Line(" ");
+
+   Card2 := Deck.Draw_Card;
+   Deck.Print_Card(Card2);
+   Ada.Text_IO.Put_Line(" ");
+
+   Card3 := Deck.Draw_Card;
+   Deck.Print_Card(Card3);
+   Ada.Text_IO.Put_Line(" ");
+
+   if(not Deck.Compare_Cards(Card1, Card2)) and
+     (not Deck.Compare_Cards(Card1, Card3)) and
+     (not Deck.Compare_Cards(Card2, Card3)) then
+      Ada.Text_IO.Put_Line("All Cards are different!");
+   else
+      Ada.Text_IO.Put_Line("Not all cards are different!");
+   end if;
+end Main;

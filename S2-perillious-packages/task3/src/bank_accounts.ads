@@ -11,7 +11,7 @@ package Bank_Accounts is
    
    -- Deposits Amount at the given Account.
    procedure Deposit(Account: in out Account_Type; Amount: Cents_Type) with
-     Pre => (Amount >= 0),
+     Pre => (Amount >= 0) and (Account.Balance <= Cents_Type'Last - Amount),
      Post => (Account.Balance'Old <= Account.Balance);
    
    -- Withdraws Amount from the given Account.
@@ -25,7 +25,8 @@ package Bank_Accounts is
                       To: in out Account_Type; 
                       Amount: in Cents_Type) with
      Pre => (Amount >= 0) and
-     ((From.Balance - Amount) >= 0),
+     ((From.Balance - Amount) >= 0) and
+     (To.Balance <= Cents_Type'Last - Amount),
      Post => (From.Balance'Old >= From.Balance) and
      (To.Balance'Old <= To.Balance);
 

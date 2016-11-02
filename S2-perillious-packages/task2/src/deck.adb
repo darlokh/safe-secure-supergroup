@@ -52,6 +52,15 @@ package body Deck is
       Ada.Text_IO.Put(",  Suit: " & Suit_Type'Image(item.Suit));
    end Print_Card;
 
+   function Compare_Cards(Card1, Card2 : Card) return Boolean is
+   begin
+      if (Card1.Suit = Card2.Suit) and (Card1.Value = Card2.Value) then
+         return TRUE;
+      else
+         return False;
+      end if;
+   end Compare_Cards;
+
    function Is_Empty return Boolean is
    begin
       if Integer(Card_Vec.Length) = 0 then
