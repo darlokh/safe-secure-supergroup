@@ -1,9 +1,12 @@
 with Ada.Containers.Vectors;
 
 package body Graph is
+   Graph : Vertex_Type(0);
    
-   Graph : Vertex_Array(0);
-   Edges : Edge_Array(0);
+   package Edge_Vector is new Ada.Containers.Vectors
+     (Index_Type => Natural,
+      Element_Type => Edge_Type);
+   Edge_Vec : Edge_Vector.Vector;
    
    -- Stores the Vertex in the Graph. Raises a 
    -- Vertex_Already_In_Graph_Exception if it is already in the graph.
@@ -21,58 +24,37 @@ package body Graph is
    -- and does nothing beyond.
    procedure Add_Edge(From: Vertex_Type; To: Vertex_Type; Weight: Integer) is
       New_Edge : Edge_Type := (From, To, Weight);
-      Tmp_Edges : Edge_Array(Edge_Vector'Length+1);
    begin
-      Tmp_Edges'Last := New_Edge;
-      Tmp_Edges(Edges'First..Edgs'Last) := Edges(Edges'First..Edges'Last);
-      Tmp_Edges'Last := New_Edge;
-      Edges := Tmp_Edges;
+      Edge_Vec.Append(New_Edge);
    end Add_Edge;
    
    -- Removes all vertices and edges from the graph.   
    procedure Clear is
       Empty_Graph : Vertex_Array(0);
-      Empty_Edges : Edge_Array(0);
    begin
-      Edges := Empty_Edges;
+      Edge_Vec.Clear;
       Graph := Empty_Graph;
    end Clear;
 
    -- Returns the weight of the edge, if it is stored in the graph.
    -- Raises an Edge_Not_Found_Exception otherwise.  
    function Get_Edge_Weight(From: Vertex_Type; To: Vertex_Type) return Integer is
+      Cursor : Edge_Vector.Cursor;
    begin
-      for i in Edges'Range loop
-         if i.From_Vertex = From and i.To_Vector = To then
-            return i.Weight;
-         end if;
-      end loop;
-      raise Edge_Not_Found_Exception;
+      Cursor := Edge_Vector.First(Edge_Vec);
+      while
    end Get_Edge_Weight;
 
    -- Returns True if an edge from From to To is stored in the graph.
    -- Returns False otherwise.   
    function Has_Edge(From: Vertex_Type; To: Vertex_Type) return Boolean is
    begin
-      for i in Edges'Range loop
-         if i.From_Vertex = From and i.To_Vector = To then
-            return true;
-         end if;
-      end loop;
-      return false;
    end Has_Edge;
 
    -- Removes the edge in the Graph from From to To, if existing; 
    -- Raises an Edge_Not_Found_Exception otherwise.   
    function Remove_Edge(From: Vertex_Type; To: Vertex_Type) return Boolean is
    begin 
-      for i in Edges'Range loop
-         if i.From_Vertex = From and i.To_Vector = To then
-            
-            return true;
-         end if;
-      end loop;
-      raise Edge_Not_Found_Exception;
    end Remove_Edge;
 
    -- Returns an array containing exactly all current vertices of the graph.   
