@@ -5,6 +5,7 @@ generic
 package Graph is
    Edge_Not_Found_Exception: exception;
    Vertex_Already_In_Graph_Exception: exception;
+   Vertex_Is_Zero_Exception: exception;
 
    type Vertex_Array is array(Natural range <>) of Vertex_Type;
 
