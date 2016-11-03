@@ -2,7 +2,7 @@ with Graph;
 with Sms_Graph;
 with Ada.Text_IO;
 
-procedure main is
+procedure Main is
 
    -- supress concurrent modification exception, this is a really bad thing
    pragma Suppress(Tampering_Check);
@@ -185,4 +185,4 @@ begin
    end loop;
 
    Ada.Text_IO.Put_Line("done.");
-end main;
+end Main;
