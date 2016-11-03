@@ -1,5 +1,5 @@
 with Graph;
-with Sms_Graph;
+--with Sms_Graph;
 with Ada.Text_IO;
 
 procedure main is

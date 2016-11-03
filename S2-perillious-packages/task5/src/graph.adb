@@ -3,7 +3,6 @@
 package body Graph is
    
    Graph : Vertex_Array(1..100) := (others => Zero);
-   type Edge_Array is array(Natural range <>) of Edge_Type;
    Edges : Edge_Array(1..100) := (others => (0, Zero, Zero));
    Vertex_Count : Natural := 0;
    Edge_Count : Natural := 0;

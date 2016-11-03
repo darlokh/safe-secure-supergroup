@@ -6,8 +6,11 @@ package Graph is
    Edge_Not_Found_Exception: exception;
    Vertex_Already_In_Graph_Exception: exception;
    Vertex_Is_Zero_Exception: exception;
+   
+   type Edge_Type is private;
 
    type Vertex_Array is array(Natural range <>) of Vertex_Type;
+   type Edge_Array is array(Natural range <>) of Edge_Type;
 
    procedure Add_Vertex(Vertex: Vertex_Type);
    -- Stores the Vertex in the Graph. Raises a 
