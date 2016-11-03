@@ -17,5 +17,7 @@ package Deck is
    
    function Is_Empty return Boolean;
    
+   function Compare_Cards(Card1, Card2 : Card) return Boolean;
+   
    procedure Print_Card(item : Card);
 end Deck;
