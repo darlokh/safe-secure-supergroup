@@ -1,4 +1,5 @@
 with Graph;
+with Sms_Graph;
 with Ada.Text_IO;
 
 procedure main is
@@ -45,6 +46,18 @@ begin
       Some_Weight := Integer_Graph.Get_Edge_Weight(From => 1, To => 2);
       Ada.Text_IO.Put_Line(Integer'Image(Some_Weight));
       Some_Weight := Integer_Graph.Get_Edge_Weight(From => 2, To => 3);
+   exception
+      when Integer_Graph.Edge_Not_Found_Exception =>
+         Ada.Text_IO.Put_Line("Edge not found!");
+   end;
+
+   Integer_Graph.Add_Edge(From => 1, To => 2, Weight => 3);
+
+   declare
+      Some_Weight : Integer := 0;
+   begin
+      Some_Weight := Integer_Graph.Get_Edge_Weight(From => 1, To => 2);
+      Ada.Text_IO.Put_Line(Integer'Image(Some_Weight));
    exception
       when Integer_Graph.Edge_Not_Found_Exception =>
          Ada.Text_IO.Put_Line("Edge not found!");

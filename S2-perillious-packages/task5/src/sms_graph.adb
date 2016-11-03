@@ -36,12 +36,6 @@ package body Graph is
          raise Vertex_Is_Zero_Exception;
          return;
       end if;
-      for i in Edges'First .. Edge_Count loop
-         if Edges(i).From_Vertex = From and Edges(i).To_Vertex = To then
-            Edges(i).Weight := Weight;
-            return;
-         end if;
-      end loop;
       Edges(Edge_Count+1) := (From_Vertex => From, To_Vertex => To, Weight => Weight);
       Edge_Count := Edge_Count + 1;
    end Add_Edge;
