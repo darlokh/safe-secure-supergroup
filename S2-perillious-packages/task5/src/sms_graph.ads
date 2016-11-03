@@ -1,41 +1,43 @@
 -- second class for a somewhat more sophisticated implementation
+
 generic
    type Vertex_Type is private;
    with function "="(Left: Vertex_Type; Right: Vertex_Type) return Boolean;
    Zero : Vertex_Type;
-   Max_Range : Vertex_Type;
+   
 package Sms_Graph is
    Edge_Not_Found_Exception: exception;
    Vertex_Already_In_Graph_Exception: exception;
    Vertex_Is_Zero_Exception: exception;
-
+   
    type Vertex_Array is array(Natural range <>) of Vertex_Type;
 
+   -- add new edge from vertex to zero, weight 0
+   -- raise exception if already somewhere in there
    procedure Add_Vertex(Vertex: Vertex_Type);
-   -- Stores the Vertex in the Graph. Raises a 
-   -- Vertex_Already_In_Graph_Exception if it is already in the graph.
+   
+   -- add new edge from vertex to vertex, overwrite if (0, vertex,zero) exists
    procedure Add_Edge(From: Vertex_Type; To: Vertex_Type; Weight: Integer);
-   -- Stores a new edge in the Graph from From to To that has the given
-   -- Weight assigned to it. If an edge from From to To is already stored
-   -- in the Graph, this function only re-assigns the given Weight to it
-   -- and does nothing beyond.
+  
+   -- clear
    procedure Clear;
-   -- Removes all vertices and edges from the graph.
+   
+   -- return weight if weight > 0, else edge_not_found_exc.
    function Get_Edge_Weight(From: Vertex_Type; To: Vertex_Type) return Integer;
-   -- Returns the weight of the edge, if it is stored in the graph.
-   -- Raises an Edge_Not_Found_Exception otherwise.
+   
+   -- true if weight > 0
    function Has_Edge(From: Vertex_Type; To: Vertex_Type) return Boolean;
-   -- Returns True if an edge from From to To is stored in the graph.
-   -- Returns False otherwise.
+   
+   -- remove edge if weight > 0, else exc.
    function Remove_Edge(From: Vertex_Type; To: Vertex_Type) return Boolean;
-   -- Removes the edge in the Graph from From to To, if existing; 
-   -- Raises an Edge_Not_Found_Exception otherwise.
+   
+   -- generate vertex array
    function To_Vertex_Array return Vertex_Array;
-   -- Returns an array containing exactly all current vertices of the graph.
+   
 private
    type Edge_Type is record
       Weight : Integer := 0;
       From_Vertex : Vertex_Type;
       To_Vertex : Vertex_Type;
    end record;
-end Graph;
+end Sms_Graph;

@@ -8,7 +8,6 @@ package Graph is
    Vertex_Is_Zero_Exception: exception;
    
    type Edge_Type is private;
-
    type Vertex_Array is array(Natural range <>) of Vertex_Type;
    type Edge_Array is array(Natural range <>) of Edge_Type;
 
