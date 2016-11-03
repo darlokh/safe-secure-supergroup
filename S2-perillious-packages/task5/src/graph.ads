@@ -1,12 +1,12 @@
 generic
    type Vertex_Type is private;
    with function "="(Left: Vertex_Type; Right: Vertex_Type) return Boolean;
+   Zero : Vertex_Type;
 package Graph is
    Edge_Not_Found_Exception: exception;
    Vertex_Already_In_Graph_Exception: exception;
 
    type Vertex_Array is array(Natural range <>) of Vertex_Type;
-   type Edge_Array is array(Natural range <>) of Edge_Type;
 
    procedure Add_Vertex(Vertex: Vertex_Type);
    -- Stores the Vertex in the Graph. Raises a 
@@ -31,7 +31,7 @@ package Graph is
    -- Returns an array containing exactly all current vertices of the graph.
 private
    type Edge_Type is record
-      Weight : Float := 0.0;
+      Weight : Integer := 0;
       From_Vertex : Vertex_Type;
       To_Vertex : Vertex_Type;
    end record;
