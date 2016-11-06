@@ -4,6 +4,7 @@ generic
    type Vertex_Type is private;
    with function "="(Left: Vertex_Type; Right: Vertex_Type) return Boolean;
    Zero : Vertex_Type;
+   Max_Size : Natural := 100;
    
 package Sms_Graph is
    Edge_Not_Found_Exception: exception;

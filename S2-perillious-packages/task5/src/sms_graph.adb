@@ -1,4 +1,5 @@
 with Ada.Containers.Vectors;
+with Ada.Text_IO;
 
 package body Sms_Graph is
    
@@ -28,41 +29,44 @@ package body Sms_Graph is
    
    procedure Add_Edge(From: Vertex_Type; To: Vertex_Type; Weight: Integer) is
       Is_Added : Boolean := False;
-      Graph_Index : Edge_Vector.Extended_Index;
+      Graph2 : Edge_Vector.Vector := Graph;
    begin
       if From = Zero or To = Zero then
          raise Vertex_Is_Zero_Exception;
       end if;
       
-      for E of Graph loop
-         -- is there a zero-entry for one of the nodes?
+      for E of Graph2 loop
+         -- is there a zero-entry for the From-Node?
          if E.From_Vertex = From and 
            E.To_Vertex = Zero then
+            -- Already found Zero-entry for To-node, remove From-node
             if Is_Added then
-               Graph_Index := Graph.Find_Index(E);
-               Graph.Delete(Graph_Index);
+               Graph.Delete(Graph.Find_Index(E));
                return;
-            else
-               E.To_Vertex := To;
-               E.Weight := Weight;
+            else -- replace
+               Graph.Replace_Element(Graph.Find_Index(E), (Weight => Weight, 
+                                                           From_Vertex => From,
+                                                             To_Vertex => To));
                Is_Added := True;
             end if;
+         -- Zero-entry for To-node 
          elsif E.From_Vertex = To and 
            E.To_Vertex = Zero then
             if Is_Added then
-               Graph_Index := Graph.Find_Index(E);
-               Graph.Delete(Graph_Index);
+               Graph.Delete(Graph.Find_Index(E));
                return;
             else
-               E.From_Vertex := From;
-               E.To_Vertex := To;
-               E.Weight := Weight;
+               Graph.Replace_Element(Graph.Find_Index(E), (Weight => Weight, 
+                                                           From_Vertex => From,
+                                                             To_Vertex => To));
                Is_Added := True;
             end if;
          elsif E.From_Vertex = From and 
            E.To_Vertex = To then
-            -- found teh edge, update weight
-            E.Weight := Weight;
+            -- found the edge, update weight
+            Graph.Replace_Element(Graph.Find_Index(E), (Weight => Weight, 
+                                                        From_Vertex => From,
+                                                          To_Vertex => To));
             Is_Added := True;
             return;
          end if;
@@ -85,7 +89,7 @@ package body Sms_Graph is
    begin
       for E of Graph loop
          if E.From_Vertex = From and 
-           E.To_Vertex = To then
+           E.To_Vertex = To then 
             return E.Weight;
          end if;
       end loop;
@@ -106,13 +110,12 @@ package body Sms_Graph is
 
 
    function Remove_Edge(From: Vertex_Type; To: Vertex_Type) return Boolean is
-      Graph_Index : Edge_Vector.Extended_Index;
+      Graph2 : Edge_Vector.Vector := Graph;
    begin 
-      for E of Graph loop
+      for E of Graph2 loop
          if E.From_Vertex = From and 
            E.To_Vertex = To then
-            Graph_Index := Graph.Find_Index(E);
-            Graph.Delete(Graph_Index);
+            Graph.Delete(Graph.Find_Index(E));
             return True;
          end if;
       end loop;
@@ -121,36 +124,38 @@ package body Sms_Graph is
 
    -- Returns an array containing exactly all current vertices of the graph.   
    function To_Vertex_Array return Vertex_Array is
-      Return_Array : Vertex_Array(1..100) := (others => Zero);
+      Return_Array : Vertex_Array(1..Max_Size) := (others => Zero);
       Array_Index : Integer := 1;
    begin 
+      -- for every edge in Graph do
       for E of Graph loop
+         -- check if from-node is in Return_Array
          begin 
             for i in Return_Array'First .. Return_Array'Last loop
+               -- if already in graph, skip this an go to next block
                if Return_Array(i) = E.From_Vertex then
                   raise Sms_Graph.Vertex_Already_In_Graph_Exception;
                end if;
             end loop;
+            Return_Array(Array_Index) := E.From_Vertex;
+            Array_Index := Array_Index + 1;
          exception
             when Sms_Graph.Vertex_Already_In_Graph_Exception => 
-               exit;
+               Ada.Text_IO.Put(" ");
          end;
-         Return_Array(Array_Index) := E.From_Vertex;
-         Array_Index := Array_Index + 1;
-         
+         -- check if to-node is in Return_Array
          begin 
             for i in Return_Array'First .. Return_Array'Last loop
                if Return_Array(i) = E.To_Vertex then
                   raise Sms_Graph.Vertex_Already_In_Graph_Exception;
                end if;
             end loop;
+            Return_Array(Array_Index) := E.To_Vertex;
+            Array_Index := Array_Index + 1;
          exception
             when Sms_Graph.Vertex_Already_In_Graph_Exception => 
-               exit;
-         end;
-         Return_Array(Array_Index) := E.To_Vertex;
-         Array_Index := Array_Index + 1;
-         
+               Ada.Text_IO.Put(" ");
+         end;   
       end loop;
       return Return_Array;
    end To_Vertex_Array;

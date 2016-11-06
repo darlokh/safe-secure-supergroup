@@ -4,6 +4,6 @@ Project Graphs is
   for Exec_Dir use ".";
   for Main use ("main.adb");
   package Compiler is
-    for Default_Switches ("Ada") use ("-gnatwe") & ("-gnatwa") & ("-gnato") & ("-gnat12");
+    for Default_Switches ("Ada") use ("-gnat12");
   end Compiler;
 end Graphs;
