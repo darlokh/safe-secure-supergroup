@@ -8,6 +8,6 @@ Project Thread is
    end Compiler;
 
    package Builder is
-      for Default_Switches ("ada") use ("-g");
+      for Default_Switches ("ada") use ("-g", "-gnat12");
    end Builder;
 end Thread;
