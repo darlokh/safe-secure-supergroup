@@ -1,9 +1,9 @@
-Project Hello is
+Project Main is
   for Source_Dirs use ("src");
   for Object_Dir use "bin";
   for Exec_Dir use ".";
   for Main use ("main.adb");
   package Compiler is
-    for Default_Switches ("Ada") use ("-gnatwe") & ("-gnatwa") & ("-gnato") & ("-gnat12");
+    for Default_Switches ("Ada") use ("-gnat12");
   end Compiler;
-end Hello;
+end Main;
