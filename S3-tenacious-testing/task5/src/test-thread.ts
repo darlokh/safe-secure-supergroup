@@ -1,17 +1,8 @@
-context with Ada.Text_IO;
-with Thread;
-use Thread;
+Context
+	with Thread;
 
-code Ada.Text_IO.Put_Line("Begin Testing: ");
-
-***** Test Initialize State: (1)
-define 
-		My_State : Thread.State;
+***** (1) Test Initialize State
+Define	My_State : Thread.State;
 		My_Action : Thread.Action;
-test
-	begin
-		Initialize(My_State);
-	end
-pass   My_State = Ready
-
-code Ada.Text_IO.Put_Line("done");
+Test		Thread.Initialize(My_State);
+Pass		My_State = Ready
