@@ -1,0 +1,82 @@
+V "GNAT Lib v2016"
+A -O1
+A -gnatA
+A -g
+A -gnatQ
+A -gnatf
+A -gnato
+A -gnatwa
+A -gnatw.X
+A -gnatwe
+A -gnaty
+A -gnat12
+A -mtune=generic
+A -march=pentium4
+P ZX
+
+RN
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+RV SPARK_05
+
+U vectors_suite%b	vectors_suite.adb	6d4327a3 OO PK
+W vectors_test%s	vectors_test.adb	vectors_test.ali
+
+U vectors_suite%s	vectors_suite.ads	a260389e EE NE OO PK
+W aunit%s		aunit.adb		aunit.ali
+W aunit.test_suites%s	aunit-test_suites.adb	aunit-test_suites.ali
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-calend.ads		20160516092930 2d5f01d4 ada.calendar%s
+D a-except.ads		20160516092928 291912d5 ada.exceptions%s
+D a-finali.ads		20160516092930 bf4f806b ada.finalization%s
+D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
+D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
+D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
+D ada_containers.ads	20160516092006 11329e00 ada_containers%s
+D ada_containers-aunit_lists.ads  20160516092006 d9ebc89a ada_containers.aunit_lists%s
+D aunit.ads		20160516092006 76cdf7c6 aunit%s
+D aunit-assertions.ads	20160516092006 b7f9ecd6 aunit.assertions%s
+D aunit-options.ads	20160516092006 6e5a02a6 aunit.options%s
+D aunit-simple_test_cases.ads  20160516092006 4111c32f aunit.simple_test_cases%s
+D aunit-test_cases.ads	20160516092006 3fb77584 aunit.test_cases%s
+D aunit-test_filters.ads  20160516092006 f10b2127 aunit.test_filters%s
+D aunit-test_results.ads  20160516092006 171847c9 aunit.test_results%s
+D aunit-test_suites.ads	20160516092006 6821dc24 aunit.test_suites%s
+D aunit-tests.ads	20160516092006 1da11d49 aunit.tests%s
+D aunit-time_measure.ads  20160516092006 a8b9fbfb aunit.time_measure%s
+D gnat.ads		20160516092932 fd2ad2f1 gnat%s
+D g-souinf.ads		20160516092932 291df751 gnat.source_info%s
+D system.ads		20160516092930 2da59038 system%s
+D s-exctab.ads		20160516092930 54135002 system.exception_table%s
+D s-finmas.ads		20160516092930 7811a767 system.finalization_masters%s
+D s-finroo.ads		20160516092930 4ff27390 system.finalization_root%s
+D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-pooglo.ads		20160516092926 ede33ef8 system.pool_global%s
+D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
+D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
+D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
+D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20160516092928 b16154c2 system.storage_pools%s
+D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
+D vectors_suite.ads	20161116141054 ca41e4ba vectors_suite%s
+D vectors_suite.adb	20161116142626 d0b5cbbc vectors_suite%b
+D vectors_test.ads	20161116144446 77b708a5 vectors_test%s
+X 10 aunit.ads
+34K9*AUnit 48e10 34|1r6 1r29
+X 17 aunit-test_suites.ads
+41K15*Test_Suites 86e22 34|1w12 1r35
+43R9*Test_Suite<18|38R9> 84e14 35|4r21
+44P9*Access_Test_Suite(43R9) 34|4r26 35|7r26
+48U14*Add_Test 35|9s7
+X 34 vectors_suite.ads
+3K9*Vectors_Suite 5l5 5e18 35|3b14 12l5 12t18
+4V13*Suite{17|44P9} 35|7b13 11l8 11t13
+X 35 vectors_suite.adb
+4r4 Result{17|43R9} 9m17 9r17 10m14 10r14
+5r4 Vector_Test{36|6R9} 9m32 9r32
+X 36 vectors_test.ads
+5K9*Vectors_Test 35|1w6 5r26 36|15e17
+6R9*Vector_Test<14|41R9> 35|5r39 36|6e54
+

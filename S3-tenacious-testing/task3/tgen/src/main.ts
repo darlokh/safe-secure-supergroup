@@ -34,6 +34,6 @@ define First_Vector : Vectors.Vector := (X => 1.0, Y => 2.0, Z => 2.0);
   use Ada.Numerics.Elementary_Functions;
 test --
 pass Distance_To_Origin(First_Vector) = 3.0
-pass Distance(First_Vector, Second_Vector) = Sqrt(2.0)
+pass Distance(First_Vector, Second_Vector) = Sqrt(2.0))
 
 code Ada.Text_IO.Put_Line("done");
