@@ -1,0 +1,25 @@
+[GENERATED OBJECT FILE]
+b__main.o
+[PROJECT FILES]
+C:\Users\Leaves\Documents\GitHub\safe-secure-supergroup\S3-tenacious-testing\task3\aunit\harness.gpr
+20161116142916
+C:\gnat\2016\lib\gnat\aunit.gpr
+20160517073136
+[BOUND OBJECT FILES]
+C:\Users\Leaves\Documents\GitHub\safe-secure-supergroup\S3-tenacious-testing\task3\aunit\bin\vectors.o
+C:\Users\Leaves\Documents\GitHub\safe-secure-supergroup\S3-tenacious-testing\task3\aunit\bin\main.o
+C:\Users\Leaves\Documents\GitHub\safe-secure-supergroup\S3-tenacious-testing\task3\aunit\bin\vectors_test.o
+C:\Users\Leaves\Documents\GitHub\safe-secure-supergroup\S3-tenacious-testing\task3\aunit\bin\vectors_suite.o
+[GENERATED SOURCE FILES]
+b__main.ads
+b__main.adb
+b__main.ali
+[RESULTING OPTIONS]
+-LC:\Users\Leaves\Documents\GitHub\safe-secure-supergroup\S3-tenacious-testing\task3\aunit\bin\
+-LC:\Users\Leaves\Documents\GitHub\safe-secure-supergroup\S3-tenacious-testing\task3\aunit\bin\
+-LC:\gnat\2016\lib\aunit\
+-LC:/gnat/2016/lib/gcc/i686-pc-mingw32/4.9.4/adalib/
+-static
+-static-libgcc
+C:/gnat/2016/lib/gcc/i686-pc-mingw32/4.9.4/adalib/libgnat.a
+-Wl,--stack=0x2000000
