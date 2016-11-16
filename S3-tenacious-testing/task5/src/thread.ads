@@ -8,8 +8,11 @@
 -------------------------------------------------------------
 
 package Thread is
-    type State is (None, Ready, Running, Stopped, Sleeping, Waiting);
-    type Action is (Create, Notify, Resume, Sleep, Start, Stop, Wait, Quit);
+   pragma Assertion_Policy(Pre => Check);
+   pragma Assertion_Policy(Post => Check);
+   
+   type State is (None, Ready, Running, Stopped, Sleeping, Waiting);
+   type Action is (Create, Notify, Resume, Sleep, Start, Stop, Wait);
    
    -- Sets S to Ready.
    procedure Initialize(S: out State) with
@@ -19,19 +22,19 @@ package Thread is
    -- given action A. Sets S to None if the transition is not defined. 
    procedure Do_Action(S: in out State; A: Action) with
      Post => (S /= S'Old) and
-                (if S=Ready and A=Start then
+                (if S'Old=Ready and A=Start then
                      S = Running
-                 elsif S=Ready and A=Stop then
+                 elsif S'Old=Ready and A=Stop then
                      S = Stopped
-                 elsif S=Waiting and A=Notify then
+                 elsif S'Old=Waiting and A=Notify then
                      S = Running
-                 elsif S=Running and A=Notify then
+                 elsif S'Old=Running and A=Notify then
                      S = Waiting
-                 elsif S=Running and A=Quit then
+                 elsif S'Old=Running and A=Stop then
                      S = Stopped
-                 elsif S=Running and A=Sleep then
+                 elsif S'Old=Running and A=Sleep then
                      S = Sleeping
-                 elsif S=Sleeping and A=Resume then
+                 elsif S'Old=Sleeping and A=Resume then
                      S = Running
                  );
 end Thread;
