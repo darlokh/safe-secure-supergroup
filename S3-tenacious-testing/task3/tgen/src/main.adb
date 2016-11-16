@@ -64,9 +64,9 @@ begin  -- unit main block
 
   -- Test Case (1)   Test basic math operations (1)
   declare
-    First_Vector : Vectors.Vector := (X => 1.0, Y => 2.0, Z => 3.0);
-    Second_Vector : Vectors.Vector := (X => 3.0, Y => 2.0, Z => 1.0);
-    Some_Scalar : Float := 2.0;
+    First_Vector : constant Vector := (X => 1.0, Y => 2.0, Z => 3.0);
+    Second_Vector : constant Vector := (X => 3.0, Y => 2.0, Z => 1.0);
+    Some_Scalar : constant Float := 2.0;
   begin  -- test case
     begin  -- test part
       --
@@ -174,8 +174,8 @@ begin  -- unit main block
 
   -- Test Case (2)   Test orthogonality (2)
   declare
-    First_Vector : Vectors.Vector := (X => 1.0, Y => 0.0, Z => 0.0);
-    Second_Vector : Vectors.Vector := (X => 0.0, Y => 1.0, Z => 0.0);
+    First_Vector : constant Vector := (X => 1.0, Y => 0.0, Z => 0.0);
+    Second_Vector : constant Vector := (X => 0.0, Y => 1.0, Z => 0.0);
   begin  -- test case
     begin  -- test part
       --
@@ -218,8 +218,8 @@ begin  -- unit main block
 
   -- Test Case (3)   Test cross product (3)
   declare
-    First_Vector : Vectors.Vector := (X => 1.0, Y => 2.0, Z => 3.0);
-    Second_Vector : Vectors.Vector := (X => 3.0, Y => 2.0, Z => 1.0);
+    First_Vector : constant Vector := (X => 1.0, Y => 2.0, Z => 3.0);
+    Second_Vector : constant Vector := (X => 3.0, Y => 2.0, Z => 1.0);
   begin  -- test case
     begin  -- test part
       --
@@ -262,8 +262,8 @@ begin  -- unit main block
 
   -- Test Case (4)   Test distance + distance to origin (4)
   declare
-    First_Vector : Vectors.Vector := (X => 1.0, Y => 2.0, Z => 2.0);
-    Second_Vector : Vectors.Vector := (X => 2.0, Y => 2.0, Z => 1.0);
+    First_Vector : constant Vector := (X => 1.0, Y => 2.0, Z => 2.0);
+    Second_Vector : constant Vector := (X => 2.0, Y => 2.0, Z => 1.0);
     use Ada.Numerics.Elementary_Functions;
   begin  -- test case
     begin  -- test part
