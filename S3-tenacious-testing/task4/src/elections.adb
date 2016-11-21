@@ -1,6 +1,6 @@
-package body Elections is
-	
+with Ada.Text_IO;
 
+package body Elections is
 
     procedure Initialize(Num_Voters: Natural) is
     begin
@@ -32,6 +32,7 @@ package body Elections is
     	for I in Votes_Distribution'Range loop
     		if Votes_Distribution(I) > Max_Val then
     			Max_Party := I;
+    			Max_Val := Votes_Distribution(I);
     		end if;
     	end loop;
     	for I in Votes_Distribution'Range loop

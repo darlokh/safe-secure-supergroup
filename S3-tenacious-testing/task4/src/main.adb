@@ -61,12 +61,19 @@ begin  -- unit main block
     Ada.Text_IO.Put_Line("Begin Testing: ");
   end;  -- code block
 
-  -- Test Case (1)   Test (1) Initialize
+  -- Test Case (1)   Test (1) All_Voters_Voted
   declare
-    Num_Voters : Natural := 1;
+    Num_Voters : Natural := 5;
+    	Vote_A : Party := A;
+    	Vote_B : Party := B;
   begin  -- test case
     begin  -- test part
       Initialize(Num_Voters);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_B);
+      	Vote_For(Vote_B);
       Driver_Internals.Set_Path ("=>");
     exception
       when E: others =>
@@ -74,23 +81,23 @@ begin  -- unit main block
     end;  -- test part
     begin  -- result part
       if Driver_Internals.Path_Was ("=>") then
-        if Num_Voters > 0
+        if All_Voters_Voted = True
         then
           Driver_Internals.Test_Case_Passed := True;
           Put_Line ("(1)  pass.");
         else
           Driver_Internals.Test_Case_Passed := False;
           Driver_Internals.Fail_Result := True;
-          Put_Line ("(1)  Test (1) Initialize");
-          Put_Line ("           Script name:'main.ts'; Line:6 ");
+          Put_Line ("(1)  Test (1) All_Voters_Voted");
+          Put_Line ("           Script name:'main.ts'; Line:7 ");
           Put_Line ("      ...FAIL.");
           Put_Line ("         (" & "path `=>' was taken, but predicate is FALSE" & ")");
         end if;
       else
         Driver_Internals.Test_Case_Passed := False;
         Driver_Internals.Fail_Result := True;
-        Put_Line ("(1)  Test (1) Initialize");
-        Put_Line ("           Script name:'main.ts'; Line:6 ");
+        Put_Line ("(1)  Test (1) All_Voters_Voted");
+        Put_Line ("           Script name:'main.ts'; Line:7 ");
         Put_Line ("      ...FAIL.");
         Put_Line ("         (" & "path `" & Driver_Internals.Taken_Path & "' when `=>' was expected" & ")");
       end if;
@@ -100,6 +107,107 @@ begin  -- unit main block
       when E: others =>
         Driver_Internals.Unexpected_Error := True;
         Put_Line ("ERROR: exception " & Ada.Exceptions.Exception_Name (E) & " raised in result part of test case 1.");
+        raise Driver_Internals.Program_Terminate;
+    end;  -- result part
+  end;  -- test case
+
+  -- Test Case (2)   Test (2) Find_Winner A
+  declare
+    Num_Voters : Natural := 5;
+    	Vote_A : Party := A;
+    	Vote_B : Party := B;
+  begin  -- test case
+    begin  -- test part
+      Initialize(Num_Voters);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_B);
+      	Vote_For(Vote_B);
+      Driver_Internals.Set_Path ("=>");
+    exception
+      when E: others =>
+        Driver_Internals.Set_Path (Ada.Exceptions.Exception_Name (E));
+    end;  -- test part
+    begin  -- result part
+      if Driver_Internals.Path_Was ("=>") then
+        if Find_Winner = A
+        then
+          Driver_Internals.Test_Case_Passed := True;
+          Put_Line ("(2)  pass.");
+        else
+          Driver_Internals.Test_Case_Passed := False;
+          Driver_Internals.Fail_Result := True;
+          Put_Line ("(2)  Test (2) Find_Winner A");
+          Put_Line ("           Script name:'main.ts'; Line:19 ");
+          Put_Line ("      ...FAIL.");
+          Put_Line ("         (" & "path `=>' was taken, but predicate is FALSE" & ")");
+        end if;
+      else
+        Driver_Internals.Test_Case_Passed := False;
+        Driver_Internals.Fail_Result := True;
+        Put_Line ("(2)  Test (2) Find_Winner A");
+        Put_Line ("           Script name:'main.ts'; Line:19 ");
+        Put_Line ("      ...FAIL.");
+        Put_Line ("         (" & "path `" & Driver_Internals.Taken_Path & "' when `=>' was expected" & ")");
+      end if;
+    exception
+      when Driver_Internals.Program_Terminate =>
+        raise;
+      when E: others =>
+        Driver_Internals.Unexpected_Error := True;
+        Put_Line ("ERROR: exception " & Ada.Exceptions.Exception_Name (E) & " raised in result part of test case 2.");
+        raise Driver_Internals.Program_Terminate;
+    end;  -- result part
+  end;  -- test case
+
+  -- Test Case (3)   Test (3) Find_Winner None
+  declare
+    Num_Voters : Natural := 6;
+    	Vote_A : Party := A;
+    	Vote_B : Party := B;
+  begin  -- test case
+    begin  -- test part
+      Initialize(Num_Voters);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_A);
+      	Vote_For(Vote_B);
+      	Vote_For(Vote_B);
+      	Vote_For(Vote_B);
+      Driver_Internals.Set_Path ("=>");
+    exception
+      when E: others =>
+        Driver_Internals.Set_Path (Ada.Exceptions.Exception_Name (E));
+    end;  -- test part
+    begin  -- result part
+      if Driver_Internals.Path_Was ("=>") then
+        if Find_Winner = None
+        then
+          Driver_Internals.Test_Case_Passed := True;
+          Put_Line ("(3)  pass.");
+        else
+          Driver_Internals.Test_Case_Passed := False;
+          Driver_Internals.Fail_Result := True;
+          Put_Line ("(3)  Test (3) Find_Winner None");
+          Put_Line ("           Script name:'main.ts'; Line:31 ");
+          Put_Line ("      ...FAIL.");
+          Put_Line ("         (" & "path `=>' was taken, but predicate is FALSE" & ")");
+        end if;
+      else
+        Driver_Internals.Test_Case_Passed := False;
+        Driver_Internals.Fail_Result := True;
+        Put_Line ("(3)  Test (3) Find_Winner None");
+        Put_Line ("           Script name:'main.ts'; Line:31 ");
+        Put_Line ("      ...FAIL.");
+        Put_Line ("         (" & "path `" & Driver_Internals.Taken_Path & "' when `=>' was expected" & ")");
+      end if;
+    exception
+      when Driver_Internals.Program_Terminate =>
+        raise;
+      when E: others =>
+        Driver_Internals.Unexpected_Error := True;
+        Put_Line ("ERROR: exception " & Ada.Exceptions.Exception_Name (E) & " raised in result part of test case 3.");
         raise Driver_Internals.Program_Terminate;
     end;  -- result part
   end;  -- test case

@@ -1,0 +1,8 @@
+Begin Testing: 
+(1)  pass.
+(2)  pass.
+(3)  pass.
+done
+
+Script name 'main.ts'; total test result: pass.
+
