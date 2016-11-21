@@ -17,11 +17,7 @@ package body Elections is
 
     function All_Voters_Voted return Boolean is
     begin
-    	if Num_Votes_Made = Num_Total_Voters then
-    		return TRUE;
-    	else
-    		return FALSE;
-    	end if;
+    	return Num_Votes_Made = Num_Total_Voters;
     end;
 
     function Find_Winner return Party is
