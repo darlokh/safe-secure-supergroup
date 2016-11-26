@@ -1,0 +1,181 @@
+V "GNAT Lib v2016"
+M P W=b
+A -gnatA
+A -g
+A -gnat12
+A -g
+A -gnato
+A -gnatwa
+A -gnatQ
+A -gnat12
+A -fprofile-arcs
+A -ftest-coverage
+A -mtune=generic
+A -march=pentium4
+P SS ZX
+
+RN
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U test%b		test.adb		c3d335ce NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system%s		system.ads		system.ali
+W system.concat_3%s	s-conca3.adb		s-conca3.ali
+W system.concat_4%s	s-conca4.adb		s-conca4.ali
+W system.exception_table%s  s-exctab.adb	s-exctab.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W thread%s		thread.adb		thread.ali
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-comlin.ads		20160516092930 ea62afbc ada.command_line%s
+D a-except.ads		20160516092928 291912d5 ada.exceptions%s
+D a-ioexce.ads		20160516092926 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
+D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
+D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
+D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
+D interfac.ads		20160516092928 5ab55268 interfaces%s
+D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
+D system.ads		20160516092930 2da59038 system%s
+D s-conca3.ads		20160516092932 0b705ca5 system.concat_3%s
+D s-conca4.ads		20160516092930 7e642b20 system.concat_4%s
+D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
+D s-exctab.ads		20160516092930 54135002 system.exception_table%s
+D s-ficobl.ads		20160516092932 078245e4 system.file_control_block%s
+D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-secsta.ads		20160516092930 86a2856d system.secondary_stack%s
+D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
+D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
+D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
+D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
+D test.adb		20161116194506 f6c1d807 test%b
+D thread.ads		20161121101116 ce04a574 thread%s
+X 1 ada.ads
+16K9*Ada 19e8 26|10r6 10r24 11r10 13r6 13r23 23r29 69r36 98r41 113r36 142r41
+. 157r36 186r41 201r36 230r41 245r36 274r41 289r36 318r41 333r36 362r41 377r36
+. 406r41 424r3 445r5 448r41 451r5
+X 2 a-comlin.ads
+38K13*Command_Line 139e21 26|10w10 11r14 23r33 424r7 445r9 451r9
+65I9*Exit_Status<integer> 26|11r27 23r46
+70U14*Set_Exit_Status 26|424s20 445s22 451s22
+X 3 a-except.ads
+54K13*Exceptions 349e19 26|10w28 69r40 98r45 113r40 142r45 157r40 186r45
+. 201r40 230r45 245r40 274r45 289r40 318r45 333r40 362r45 377r40 406r45 448r45
+72V13*Exception_Name{string} 26|69s51 98s56 113s51 142s56 157s51 186s56 201s51
+. 230s56 245s51 274s56 289s51 318s56 333s51 362s56 377s51 406s56 448s56
+X 7 a-textio.ads
+49K13*Text_IO 471e16 26|13w10 13r27
+166U14*New_Line 26|412s3 423s3 428s5 444s5 447s5
+242U14*Put 26|413s3 414s3 416s5 419s5 429s5 431s7 434s7
+263U14*Put_Line 26|76s11 80s11 81s11 82s11 83s11 88s9 89s9 90s9 91s9 98s9
+. 120s11 124s11 125s11 126s11 127s11 132s9 133s9 134s9 135s9 142s9 164s11
+. 168s11 169s11 170s11 171s11 176s9 177s9 178s9 179s9 186s9 208s11 212s11
+. 213s11 214s11 215s11 220s9 221s9 222s9 223s9 230s9 252s11 256s11 257s11
+. 258s11 259s11 264s9 265s9 266s9 267s9 274s9 296s11 300s11 301s11 302s11
+. 303s11 308s9 309s9 310s9 311s9 318s9 340s11 344s11 345s11 346s11 347s11
+. 352s9 353s9 354s9 355s9 362s9 384s11 388s11 389s11 390s11 391s11 396s9
+. 397s9 398s9 399s9 406s9 422s3 438s7 439s7 442s7 448s5 449s5
+X 26 test.adb
+16U11*test 16b11 453l5 453t9
+18K11 Driver_Internals 32l7 32e23 34b16 55l7 55t23 66r7 69r9 72r10 75r11
+. 78r11 79r11 86r9 87r9 91r45 94r12 97r9 99r15 110r7 113r9 116r10 119r11
+. 122r11 123r11 130r9 131r9 135r45 138r12 141r9 143r15 154r7 157r9 160r10
+. 163r11 166r11 167r11 174r9 175r9 179r45 182r12 185r9 187r15 198r7 201r9
+. 204r10 207r11 210r11 211r11 218r9 219r9 223r45 226r12 229r9 231r15 242r7
+. 245r9 248r10 251r11 254r11 255r11 262r9 263r9 267r45 270r12 273r9 275r15
+. 286r7 289r9 292r10 295r11 298r11 299r11 306r9 307r9 311r45 314r12 317r9
+. 319r15 330r7 333r9 336r10 339r11 342r11 343r11 350r9 351r9 355r45 358r12
+. 361r9 363r15 374r7 377r9 380r10 383r11 386r11 387r11 394r9 395r9 399r45
+. 402r12 405r9 407r15 415r6 417r5 420r5 424r37 427r8 430r8 432r7 435r7 437r8
+. 440r7 445r39 450r5 451r39
+20X5 Program_Terminate 94r29 99r32 138r29 143r32 182r29 187r32 226r29 231r32
+. 270r29 275r32 314r29 319r32 358r29 363r32 402r29 407r32 427r25
+21b5 Fail_Result{boolean} 79m28 87m26 123m28 131m26 167m28 175m26 211m28
+. 219m26 255m28 263m26 299m28 307m26 343m28 351m26 387m28 395m26 415r23 430r25
+22b5 Unexpected_Error{boolean} 97m26 141m26 185m26 229m26 273m26 317m26 361m26
+. 405m26 437r25
+23i5 Status{2|65I9} 417m22 420m22 424r54 432m24 435m24 440m24 445r56 450m22
+. 451r56
+25b5 Test_Case_Passed{boolean} 52r20 54r24 75m28 78m28 86m26 119m28 122m28
+. 130m26 163m28 166m28 174m26 207m28 210m28 218m26 251m28 254m28 262m26 295m28
+. 298m28 306m26 339m28 342m28 350m26 383m28 386m28 394m26
+27U15 Set_Path 27>25 39b15 43l11 43t19 66s24 69s26 110s24 113s26 154s24 157s26
+. 198s24 201s26 242s24 245s26 286s24 289s26 330s24 333s26 374s24 377s26
+27a25 Path{string} 39b25 41r47 41r63 42r34
+28V14 Path_Was{boolean} 28>24 44b14 48l11 48t19 72s27 116s27 160s27 204s27
+. 248s27 292s27 336s27 380s27
+28a24 Path{string} 44b24 46r40 47r41 47r56
+29V14 Taken_Path{string} 49b14 50l67 50t77 91s62 135s62 179s62 223s62 267s62
+. 311s62 355s62 399s62
+30V14 Passed{boolean} 51b14 52l42 52t48
+31V14 Failed{boolean} 53b14 54l46 54t52
+36a5 Test_Case_Path{string} 41m9 41r25 47r22 50r20
+37i5 Test_Case_Path_Length{natural} 42m9 46r16 50r39
+61e5 My_State{27|12E9} 65m18 73r12
+62e9 My_Action{27|13E9}
+68r12 E{3|63R9} 69r67
+96r12 E{3|63R9} 98r72
+105e5 My_State{27|12E9} 109m17 109r17 117r12
+106e9 My_Action{27|13E9} 109r27
+112r12 E{3|63R9} 113r67
+140r12 E{3|63R9} 142r72
+149e5 My_State{27|12E9} 153m17 153r17 161r12
+150e9 My_Action{27|13E9} 153r27
+156r12 E{3|63R9} 157r67
+184r12 E{3|63R9} 186r72
+193e5 My_State{27|12E9} 197m17 197r17 205r12
+194e9 My_Action{27|13E9} 197r27
+200r12 E{3|63R9} 201r67
+228r12 E{3|63R9} 230r72
+237e5 My_State{27|12E9} 241m17 241r17 249r12
+238e9 My_Action{27|13E9} 241r27
+244r12 E{3|63R9} 245r67
+272r12 E{3|63R9} 274r72
+281e5 My_State{27|12E9} 285m17 285r17 293r12
+282e9 My_Action{27|13E9} 285r27
+288r12 E{3|63R9} 289r67
+316r12 E{3|63R9} 318r72
+325e5 My_State{27|12E9} 329m17 329r17 337r12
+326e9 My_Action{27|13E9} 329r27
+332r12 E{3|63R9} 333r67
+360r12 E{3|63R9} 362r72
+369e5 My_State{27|12E9} 373m17 373r17 381r12
+370e9 My_Action{27|13E9} 373r27
+376r12 E{3|63R9} 377r67
+404r12 E{3|63R9} 406r72
+446r8 E{3|63R9} 448r72
+X 27 thread.ads
+8K9*Thread 26|14w6 14r18 27|38e11
+12E9*State 26|61r16 105r16 149r16 193r16 237r16 281r16 325r16 369r16 27|12e68
+12n19*None{12E9} 26|381r23
+12n25*Ready{12E9} 26|73r23 105r25 149r25
+12n32*Running{12E9} 26|117r23 205r23 237r25 281r25 337r23 369r25
+12n41*Stopped{12E9} 26|161r23
+12n50*Sleeping{12E9} 26|293r23 325r25
+12n60*Waiting{12E9} 26|193r25 249r23
+13E9*Action 26|62r21 106r21 150r21 194r21 238r21 282r21 326r21 370r21 27|13e69
+13n28*Notify{13E9} 26|194r31 238r31
+13n36*Resume{13E9} 26|326r31
+13n44*Sleep{13E9} 26|282r31
+13n51*Start{13E9} 26|106r31 370r31
+13n58*Stop{13E9} 26|150r31
+16U14*Initialize 26|65s7
+21U14*Do_Action 26|109s7 153s7 197s7 241s7 285s7 329s7 373s7
+

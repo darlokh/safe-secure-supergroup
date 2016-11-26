@@ -1,0 +1,60 @@
+V "GNAT Lib v2016"
+A -gnatA
+A -g
+A -gnat12
+A -g
+A -gnato
+A -gnatwa
+A -gnatQ
+A -gnat12
+A -fprofile-arcs
+A -ftest-coverage
+A -mtune=generic
+A -march=pentium4
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U thread%b		thread.adb		019185c5 NE OO PK
+W system.assertions%s	s-assert.adb		s-assert.ali
+
+U thread%s		thread.ads		ce04a574 EE NE OO PK
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
+D system.ads		20160516092930 2da59038 system%s
+D s-assert.ads		20160516092930 cd8d2c94 system.assertions%s
+D s-exctab.ads		20160516092930 54135002 system.exception_table%s
+D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
+D thread.ads		20161121101116 ce04a574 thread%s
+D thread.adb		20161121101006 cf9520b1 thread%b
+X 7 thread.ads
+8K9*Thread 38l5 38e11 8|3b14 47l5 47t11
+12E9*State 12e68 16r32 21r34 8|7r32 13r34
+12n19*None{12E9} 8|40r15 43r15
+12n25*Ready{12E9} 17r19 23r27 25r30 8|10r12 17r15 20r18
+12n32*Running{12E9} 24r26 28r26 29r30 31r30 33r30 36r26 8|18r15 24r15 26r18
+. 29r18 32r18 36r15
+12n41*Stopped{12E9} 26r26 32r26 8|21r15 30r15 39r18
+12n50*Sleeping{12E9} 34r26 35r30 8|33r15 35r18
+12n60*Waiting{12E9} 27r30 30r26 8|23r18 27r15
+13E9*Action 13e69 21r44 8|13r44
+13n20*Create{13E9}
+13n28*Notify{13E9} 27r44 29r44 8|23r36 26r36
+13n36*Resume{13E9} 35r45 8|35r37
+13n44*Sleep{13E9} 33r44 8|32r36
+13n51*Start{13E9} 23r39 8|17r31
+13n58*Stop{13E9} 25r42 31r44 8|20r34 29r36
+13n64*Wait{13E9}
+16U14*Initialize 16<25 8|7b14 11l8 11t18
+16e25 S{12E9} 17r15 8|7b25 10m7
+21U14*Do_Action 21=24 21>41 8|13b14 45l8 45t17
+21e24 S{12E9} 22r15 22r20 23r21 24r22 25r24 26r22 27r24 28r22 29r24 30r22
+. 31r24 32r22 33r24 34r22 35r24 36r22 8|13b24 17r11 18m10 20r14 21m10 23r14
+. 24m10 26r14 27m10 29r14 30m10 32r14 33m10 35r14 36m10 39r14 40m10 43m10
+21e41 A{13E9} 23r37 25r40 27r42 29r42 31r42 33r42 35r43 8|13b41 17r27 20r30
+. 23r32 26r32 29r32 32r32 35r33
+

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<Locations>
+  <Project>
+    <vfs_file>C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\thread.gpr</vfs_file>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project />
+      <vfs_file>C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\thread.gpr</vfs_file>
+    </file_marker>
+    <file_marker column=" 16" line=" 12" >
+      <vfs_project />
+      <vfs_file>C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\thread.gpr</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 14" line=" 30" >
+      <vfs_project>C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\thread.gpr</vfs_project>
+      <vfs_file>C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\src\tests\test.adb</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>

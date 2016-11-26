@@ -1,0 +1,66 @@
+V "GNAT Lib v2016"
+M P W=b
+A -gnatA
+A -g
+A -gnat12
+A -g
+A -gnato
+A -gnatwa
+A -gnatQ
+A -gnat12
+A -fprofile-arcs
+A -ftest-coverage
+A -mtune=generic
+A -march=pentium4
+P ZX
+
+RN
+RV NO_IO
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U main%b		main.adb		f5ab6415 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W thread%s		thread.adb		thread.ali
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-except.ads		20160516092928 291912d5 ada.exceptions%s
+D a-ioexce.ads		20160516092926 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
+D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
+D a-textio.ads		20160516092932 386df5d4 ada.text_io%s
+D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
+D interfac.ads		20160516092928 5ab55268 interfaces%s
+D i-cstrea.ads		20160516092926 e53d8b8e interfaces.c_streams%s
+D main.adb		20161116193350 03c234b5 main%b
+D system.ads		20160516092930 2da59038 system%s
+D s-crtl.ads		20160516092926 0ebbdb71 system.crtl%s
+D s-exctab.ads		20160516092930 54135002 system.exception_table%s
+D s-ficobl.ads		20160516092932 078245e4 system.file_control_block%s
+D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
+D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
+D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
+D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20160516092930 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20160516092930 1b7d22d2 system.wch_con%s
+D thread.ads		20161121101116 ce04a574 thread%s
+X 1 ada.ads
+16K9*Ada 19e8 10|1r6 8r4 12r4
+X 6 a-textio.ads
+49K13*Text_IO 471e16 10|1w10 8r8 12r8
+263U14*Put_Line 10|8s16 12s16
+X 10 main.adb
+4U11*Main 4b11 17l5 17t9
+5e4 My_State{23|12E9} 11m15 16m14 16r14
+6e4 My_Action{23|13E9} 15m4 16r24
+X 23 thread.ads
+8K9*Thread 10|2w6 2r18 5r15 6r16 15r17 23|38e11
+12E9*State 10|5r22 23|12e68
+13E9*Action 10|6r23 23|13e69
+13n51*Start{13E9} 10|15r24
+16U14*Initialize 10|11s4
+21U14*Do_Action 10|16s4
+

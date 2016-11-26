@@ -1,0 +1,12 @@
+(1)  pass.
+(2)  pass.
+(3)  pass.
+(4)  pass.
+(5)  pass.
+(6)  pass.
+(7)  pass.
+(8)  pass.
+
+Script name 'test.ts'; total test result: pass.
+
+[2016-11-16 20:58:15] process terminated successfully, elapsed time: 00.54s

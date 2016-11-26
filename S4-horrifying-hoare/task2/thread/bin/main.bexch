@@ -1,0 +1,20 @@
+[GENERATED OBJECT FILE]
+b__main.o
+[PROJECT FILES]
+C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\thread.gpr
+20161126100906
+[BOUND OBJECT FILES]
+C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\bin\thread.o
+C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\bin\main.o
+[GENERATED SOURCE FILES]
+b__main.ads
+b__main.adb
+b__main.ali
+[RESULTING OPTIONS]
+-LC:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\bin\
+-LC:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task2\thread\bin\
+-LC:/gnat/2016/lib/gcc/i686-pc-mingw32/4.9.4/adalib/
+-static
+-static-libgcc
+C:/gnat/2016/lib/gcc/i686-pc-mingw32/4.9.4/adalib/libgnat.a
+-Wl,--stack=0x2000000
