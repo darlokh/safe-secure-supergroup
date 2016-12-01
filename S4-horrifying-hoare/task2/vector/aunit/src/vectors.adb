@@ -2,54 +2,42 @@ with Ada.Numerics.Elementary_Functions;
 with Ada.Float_Text_IO;
 with Ada.Text_IO;
 
-package body Vectors is
-    
-   function "+"(Left: Vector; Right: Vector) return Vector is
+package body Vectors is   
+   function "+"(Left : Vector; Right : Vector) return Vector is
    begin
       return Vector'(Left.X + Right.X, Left.Y + Right.Y, Left.Z + Right.Z);
-   end "+";
-    
+   end "+";    
    -- ---------------------------------------------------------------
-
-   function "-"(Left: Vector; Right: Vector) return Vector is
+   function "-"(Left : Vector; Right : Vector) return Vector is
    begin
       return Vector'(Left.X - Right.X, Left.Y - Right.Y, Left.Z - Right.Z);
-   end "-";
-    
-   -- ---------------------------------------------------------------
-    
-   function "*"(Left: Vector; Right: Float) return Vector is
+   end "-";   
+   -- ---------------------------------------------------------------  
+   function "*"(Left : Vector; Right : Float) return Vector is
    begin
       return Vector'(Left.X * Right, Left.Y * Right, Left.Z * Right);
-   end "*";
-    
-   -- ---------------------------------------------------------------
-    
-   function "*"(Left: Vector; Right: Vector) return Float is
+   end "*";    
+   -- ---------------------------------------------------------------   
+   function "*"(Left : Vector; Right : Vector) return Float is
    begin
       return (Left.X * Right.X) + (Left.Y * Right.Y) + (Left.Z * Right.Z);
    end "*";
 
    -- ---------------------------------------------------------------
-    
-   function "="(Left: Vector; Right: Vector) return Boolean is
+   function "="(Left : Vector; Right : Vector) return Boolean is
    begin
       return (Left.X = Right.X)
         and then (Left.Y = Right.Y)
         and then (Left.Z = Right.Z);
-   end "=";
-    
-   -- ---------------------------------------------------------------
-    
-   function Are_Orthogonal(Left: Vector; Right: Vector) return Boolean is
+   end "=";   
+   -- ---------------------------------------------------------------  
+   function Are_Orthogonal(Left : Vector; Right : Vector) return Boolean is
       Epsilon: constant Float := 0.00001;
    begin
       return ((Left * Right) ** 2) < (Epsilon ** 2);
-   end Are_Orthogonal;
-    
+   end Are_Orthogonal;   
    -- ---------------------------------------------------------------
-    
-   function Cross_Product(Left: Vector; Right: Vector) return Vector is
+   function Cross_Product(Left : Vector; Right : Vector) return Vector is
    begin
       return Vector'(
                      Left.Y * Right.Z - Left.Z * Right.Y, 

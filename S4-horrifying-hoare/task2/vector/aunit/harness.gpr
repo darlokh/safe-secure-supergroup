@@ -9,7 +9,7 @@ project Harness is
    for Object_Dir use "bin";
 
    package Linker is
-      for Default_Switches ("ada") use ("-g");
+      for Default_Switches ("ada") use ("-g", "-coverage");
    end Linker;
 
    package Binder is
@@ -18,8 +18,8 @@ project Harness is
 
    package Compiler is
       for Default_Switches ("ada") use
-        ("-g", "-gnatQ", "-O1", "-gnatf", "-gnato",
-         "-gnatwa.Xe", "-gnaty", "-gnat12");
+        ("-g", "-gnatQ", "-gnatf", "-gnato",
+         "-gnatwa.Xe", "-gnaty", "-gnat12", "-coverage");
    end Compiler;
 
 end Harness;

@@ -1,0 +1,165 @@
+V "GNAT Lib v2016"
+A -O1
+A -fprofile-arcs
+A -ftest-coverage
+A -gnatA
+A -g
+A -gnatQ
+A -gnatf
+A -gnato
+A -gnatwa
+A -gnatw.X
+A -gnatwe
+A -gnaty
+A -gnat12
+A -mtune=generic
+A -march=pentium4
+P ZX
+
+RN
+RV NO_DISPATCH
+RV NO_DISPATCHING_CALLS
+RV NO_FLOATING_POINT
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+RV SPARK_05
+
+U vectors_test%b	vectors_test.adb	207ceced NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.elementary_functions%s  a-nuelfu.ads  a-nuelfu.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W aunit%s		aunit.adb		aunit.ali
+W aunit.assertions%s	aunit-assertions.adb	aunit-assertions.ali
+W vectors%s		vectors.adb		vectors.ali
+
+U vectors_test%s	vectors_test.ads	3ecd8ae7 EE OO PF PK
+W ada.tags%s		a-tags.adb		a-tags.ali
+W aunit%s		aunit.adb		aunit.ali
+W aunit.test_cases%s	aunit-test_cases.adb	aunit-test_cases.ali
+W system%s		system.ads		system.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+
+D ada.ads		20160516092928 3ffc8e18 ada%s
+D a-calend.ads		20160516092930 2d5f01d4 ada.calendar%s
+D a-except.ads		20160516092928 291912d5 ada.exceptions%s
+D a-finali.ads		20160516092930 bf4f806b ada.finalization%s
+D a-numeri.ads		20160516092928 bb51c45a ada.numerics%s
+D a-nuelfu.ads		20160516092928 03e83d1c ada.numerics.elementary_functions%s
+D a-ngelfu.ads		20160516092930 b8fdcb46 ada.numerics.generic_elementary_functions%s
+D a-stream.ads		20160516092928 119b8fb3 ada.streams%s
+D a-tags.ads		20160516092932 01f5e3ef ada.tags%s
+D a-unccon.ads		20160516092930 f9eb8f06 ada.unchecked_conversion%s
+D ada_containers.ads	20160516092006 11329e00 ada_containers%s
+D ada_containers-aunit_lists.ads  20160516092006 d9ebc89a ada_containers.aunit_lists%s
+D aunit.ads		20160516092006 76cdf7c6 aunit%s
+D aunit-assertions.ads	20160516092006 b7f9ecd6 aunit.assertions%s
+D aunit-options.ads	20160516092006 6e5a02a6 aunit.options%s
+D aunit-simple_test_cases.ads  20160516092006 4111c32f aunit.simple_test_cases%s
+D aunit-test_cases.ads	20160516092006 3fb77584 aunit.test_cases%s
+D aunit-test_filters.ads  20160516092006 f10b2127 aunit.test_filters%s
+D aunit-test_results.ads  20160516092006 171847c9 aunit.test_results%s
+D aunit-tests.ads	20160516092006 1da11d49 aunit.tests%s
+D aunit-time_measure.ads  20160516092006 a8b9fbfb aunit.time_measure%s
+D gnat.ads		20160516092932 fd2ad2f1 gnat%s
+D g-souinf.ads		20160516092932 291df751 gnat.source_info%s
+D system.ads		20160516092930 2da59038 system%s
+D s-exctab.ads		20160516092930 54135002 system.exception_table%s
+D s-finmas.ads		20160516092930 7811a767 system.finalization_masters%s
+D s-finroo.ads		20160516092930 4ff27390 system.finalization_root%s
+D s-parame.ads		20160516092932 7e2a0d7f system.parameters%s
+D s-pooglo.ads		20160516092926 ede33ef8 system.pool_global%s
+D s-soflin.ads		20160516092928 14e1eb6c system.soft_links%s
+D s-stache.ads		20160516092932 a37c21ec system.stack_checking%s
+D s-stalib.ads		20160516092930 09bd3940 system.standard_library%s
+D s-stoele.ads		20160516092932 2dc34a04 system.storage_elements%s
+D s-stoele.adb		20160516092930 ed88f8fb system.storage_elements%b
+D s-stopoo.ads		20160516092928 b16154c2 system.storage_pools%s
+D s-traent.ads		20160516092928 005bf670 system.traceback_entries%s
+D vectors.ads		20161129173756 7a039cec vectors%s
+D vectors_test.ads	20161129173756 77b708a5 vectors_test%s
+D vectors_test.adb	20161129173756 99d9a96e vectors_test%b
+X 1 ada.ads
+16K9*Ada 19e8 39|1r6 67r11
+X 5 a-numeri.ads
+16K13*Numerics 32e17 39|1r10 67r15
+X 6 a-nuelfu.ads
+18K22*Elementary_Functions[7|39] 39|1w19 67r24
+X 7 a-ngelfu.ads
+42V13*Sqrt{float} 39|73s56[6|18]
+X 12 ada_containers-aunit_lists.ads
+53R9*Cursor
+X 13 aunit.ads
+34K9*AUnit 48e10 38|1w6 1r17 2r6 2r28 39|2r6 2r28 8r11
+36P9*Message_String(string)
+38P12*Test_String{36P9} 38|9r43 39|16r43
+44V13*Format{36P9} 39|19s14
+X 14 aunit-assertions.ads
+44K15*Assertions 155e21 39|2w12 2r34
+48U14*Assert 39|30s7 32s7 34s7 36s7 38s7 39s7 48s7 59s7 71s7 73s7
+101U14*Init_Test
+104U14*Clear_Failures
+107V13*Has_Failures{boolean}
+110R9*Failure_Iter<12|53R9[145]>
+113V13*First_Failure{110R9}
+X 16 aunit-simple_test_cases.ads
+57U14*Set_Up
+60U14*Tear_Down
+X 17 aunit-test_cases.ads
+39K15*Test_Cases 121e21 38|2w12 2r34 39|8r17 22r42
+41H9*Test_Case<16|44R9> 119e14 38|6r28 11r42 12r42 13r45 14r41 39|22r53 42r42
+. 52r45 64r41
+57U14*Set_Up_Case
+60U14*Tear_Down_Case
+63K12*Registration 74e20 39|8r28
+65U17*Register_Routine 39|10s7 11s7 12s7 13s7
+91U14*Run<16|67p14>
+98U14*Run_Test<16|53p14>
+101V13*Routine_Name{13|36P9}<16|50p13>
+X 37 vectors.ads
+1K9*Vectors 29e12 39|3w6 24r11 44r11 54r11 66r11
+2R10*Vector 6e15 39|25r31 26r32 45r31 46r32 55r31 56r32 68r31 69r32
+3f9*X{float} 39|25m42 27m10 30m49 32m49 34m47 45m42 46m43 55m42 57m10 60m16
+. 68m42 69m43
+4f9*Y{float} 39|25m52 27m20 30m59 32m60 34m57 45m52 46m53 55m52 57m20 60m27
+. 68m52 69m53
+5f9*Z{float} 39|25m62 27m30 30m69 32m70 34m67 45m62 46m63 55m62 57m30 60m37
+. 68m62 69m63
+8V15*"+"{2R10} 39|30s29
+10V15*"-"{2R10} 39|32s29
+12V15*"*"{2R10} 39|34s29
+14V15*"*"{float} 39|36s29
+16V15*"="{boolean} 39|30s46 32s46 34s44 38s33 39s29 59s59
+19V14*Are_Orthogonal{boolean} 39|48s15
+21V14*Cross_Product{2R10} 39|59s15
+23V14*Distance{float} 39|73s15
+25V14*Distance_To_Origin{float} 39|71s15
+X 38 vectors_test.ads
+5K9*Vectors_Test 15l5 15e17 39|5b14 77l5 77t17
+6R9*Vector_Test<17|41R9> 14|101p14 104p14 107p13 113p13 16|57p14 60p14 17|57p14
+. 60p14 91P14 98P14 101P13 38|6e54 8P14 8r41 9P13 9r23 39|7r41 16r23
+8U14*Register_Tests<17|54p14> 8=30 39|7b14 14l8 14t22
+8r30 T{6R9} 39|7b30 10m25 11m25 12m25 13m25
+9V13*Name{13|38P12}<16|47p13> 9>19 39|16b13 20l8 20t12
+9r19 T{6R9} 39|16b19 17r28
+11U14*Test_Operations 11=31 39|10r28 22b14 40l8 40t23
+11c31 T<17|41R9> 39|22b31 23r28
+12U14*Test_Orthogonal 12=31 39|11r28 42b14 50l8 50t23
+12c31 T<17|41R9> 39|42b31 43r28
+13U14*Test_Cross_Product 13=34 39|12r28 52b14 62l8 62t26
+13c34 T<17|41R9> 39|52b34 53r28
+14U14*Test_Distances 14=30 39|13r28 64b14 75l8 75t22
+14c30 T<17|41R9> 39|64b30 65r28
+X 39 vectors_test.adb
+25r7 First_Vector{37|2R10} 30r16 32r16 34r16 36r16 38r20 39r16 39r31
+26r7 Second_Vector{37|2R10} 30r31 32r31 36r31 38r35
+28f7 Some_Scalar{float} 34r31
+45r7 First_Vector{37|2R10} 48r31
+46r7 Second_Vector{37|2R10} 48r45
+55r7 First_Vector{37|2R10} 59r30
+56r7 Second_Vector{37|2R10} 59r44
+68r7 First_Vector{37|2R10} 71r35 73r25
+69r7 Second_Vector{37|2R10} 73r39
+
