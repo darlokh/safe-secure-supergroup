@@ -1,4 +1,4 @@
---with Ada.Text_IO;
+with Ada.Text_IO;
 
 package body Binary_Trees is
 
@@ -9,13 +9,13 @@ package body Binary_Trees is
    procedure Add_Item(T: in out Binary_Tree_Access; Item: Item_Type) is
    begin
       --case 1: current leaf is empty, set item here
-      if T = null then
+      if(T = null) then
          T := Create(Item=>Item);
       --case 2: current leaf equals item, throw exception
-      elsif Item = T.Item then
+      elsif(Item = T.Item) then
          raise Item_Already_In_Tree_Exception;
       --case 3: item is smaller than current tree item, then go into left leaf
-      elsif Item < T.Item then
+      elsif(Item < T.Item) then
          Temp_Parent := T;
          Add_Item(T=>T.Left,Item =>Item);
       --case 4: item is greater than current tree item, then go into left leaf
@@ -78,24 +78,68 @@ package body Binary_Trees is
       end if;
    end Get_Height_Helper;
 
-   function Get_Num_Leaves(T: Binary_Tree_Access) return Natural;
-   -- Returns the number of leaves of the tree T.
+   function Get_Num_Leaves(T: Binary_Tree_Access) return Natural is
+   begin
+      if(T = null) then
+         return 0;
+      end if;
 
-   procedure Put(T: Binary_Tree_Access);
-   -- Prints all items of the tree T in-order using Put_Item.
+      if(T.Left = null and T.Right = null) then
+         return 1;
+      else
+         return Get_Num_Leaves(T.Left) + Get_Num_Leaves(T.Right);
+      end if;
+   end Get_Num_Leaves;
 
-   procedure Remove_Item(T: in out Binary_Tree_Access; Item: Item_Type);
-   -- Removes the node -- and only that node -- which contains the item
-   -- from the tree T. Raises an Item_Not_Found_Exception if the item is not
-   -- in the tree T. Frees the memory for the node.
+   procedure Put(T: Binary_Tree_Access) is
+   begin
+      if(T = null) then
+         Ada.Text_IO.Put("");
+      else
+         Put(T.Left);
+         Put_Item(T.Item);
+         Ada.Text_IO.Put(" ");
+         Put(T.Right);
+      end if;
+   end Put;
+
+   procedure Remove_Item(T: in out Binary_Tree_Access; Item: Item_Type) is
+   begin
+      --case 1: last leaf is empty, so item not found
+      if T = null then
+         raise Item_Not_Found_Exception;
+      --case 2: current leaf equals item, delete leaf
+      elsif Item = T.Item then
+         if(T.Left = null and T.Right = null) then
+            Free(T);
+         elsif(T.Left = null) then
+            T.Right.Parent := T.Parent;
+            Free(T);
+         elsif(T.Right = null) then
+            T.Left.Parent := T.Parent;
+            Free(T);
+         else
+            Remove_All(T.Left);
+            Remove_All(T.Right);
+            Free(T);
+         end if;
+      --case 3: item is smaller than current tree item, then go into left leaf
+      elsif Item < T.Item then
+         Temp_Parent := T;
+         Remove_Item(T=>T.Left, Item =>Item);
+      --case 4: item is greater than current tree item, then go into left leaf
+      else
+         Temp_Parent := T;
+         Remove_Item(T=>T.Right, Item =>Item);
+      end if;
+   end Remove_Item;
 
    procedure Remove_All(T: in out Binary_Tree_Access) is
-      -- Removes all nodes from the tree T and frees their memory.
    begin
       if T /= null then
-         Remove_All(T.Left);   -- Delete all nodes in the left subtree
-         Remove_All(T.Right);  -- Delete all nodes in the right subtree
-         Free(T);         -- Delete this node
+         Remove_All(T.Left);
+         Remove_All(T.Right);
+         Free(T);
       end if;
    end Remove_All;
 

@@ -43,7 +43,7 @@ package Binary_Trees is
    
    --helper
    function Get_Height_Helper(T: Binary_Tree_Access) return Integer;
-   
+   -- because Get_Height can not return -1 which is essential for recursion
 private
     procedure Free is new Ada.Unchecked_Deallocation(
         Binary_Tree, 
