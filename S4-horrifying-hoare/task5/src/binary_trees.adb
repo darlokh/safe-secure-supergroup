@@ -1,42 +1,82 @@
 --with Ada.Text_IO;
 
 package body Binary_Trees is
+
    -- initialize variables
+   Temp_Parent  : Binary_Tree_Access := null;
 
    -- methods
    procedure Add_Item(T: in out Binary_Tree_Access; Item: Item_Type) is
-   -- Adds Item as a leaf node in the tree T at the correct location.
-   -- Raises an Item_Already_In_Tree_Exception if Item already is
-   -- in the tree T.
    begin
+      --case 1: current leaf is empty, set item here
       if T = null then
-         T := new Binary_Tree'(Item=>Item, Left=>null, Right=>null, Parent=>T'Access);
+         T := Create(Item=>Item);
+      --case 2: current leaf equals item, throw exception
       elsif Item = T.Item then
          raise Item_Already_In_Tree_Exception;
+      --case 3: item is smaller than current tree item, then go into left leaf
       elsif Item < T.Item then
+         Temp_Parent := T;
          Add_Item(T=>T.Left,Item =>Item);
+      --case 4: item is greater than current tree item, then go into left leaf
       else
+         Temp_Parent := T;
          Add_Item(T=>T.Right,Item =>Item);
       end if;
    end Add_Item;
 
    function Create(Item: Item_Type) return Binary_Tree_Access is
-      -- Creates a new tree with a single node that contains the given Item.
    begin
-      return new Binary_Tree'(Item=>Item, Left=>null, Right=>null, Parent=>null);
+      return new Binary_Tree'(Item=>Item, Left=>null, Right=>null, Parent=>Temp_Parent);
    end Create;
 
    function Has_Children(T: Binary_Tree_Access) return Boolean is
-   -- Returns True if the tree T possesses any children; False otherwise.
    begin
       return T.Left /= null or T.Right /= null;
    end Has_Children;
 
-   function Has_Item(T: Binary_Tree_Access; Item: Item_Type) return Boolean;
-   -- Returns True if the tree T contains the Item; False otherwise.
+   function Has_Item(T: Binary_Tree_Access; Item: Item_Type) return Boolean is
+   begin
+      return T.Item = Item;
+   end Has_Item;
 
-   function Get_Height(T: Binary_Tree_Access) return Natural;
-   -- Returns the height of the tree T.
+   function Get_Height(T: Binary_Tree_Access) return Natural is
+      -- Returns the height of the tree T.
+      Left_Leaf : Natural := 0;
+      Right_Leaf : Natural := 0;
+   begin
+      if(T = null) then
+         return 0;
+      end if;
+
+      Left_Leaf := Get_Height_Helper(T.Left);
+      Right_Leaf := Get_Height_Helper(T.Right);
+
+      if(Left_Leaf > Right_Leaf) then
+         return Left_Leaf + 1;
+      else
+         return Right_Leaf + 1;
+      end if;
+   end Get_Height;
+
+   function Get_Height_Helper(T: Binary_Tree_Access) return Integer is
+      -- Returns the height of the tree T.
+      Left_Leaf : Integer := 0;
+      Right_Leaf : Integer := 0;
+   begin
+      if(T = null) then
+         return -1;
+      end if;
+
+      Left_Leaf := Get_Height_Helper(T.Left);
+      Right_Leaf := Get_Height_Helper(T.Right);
+
+      if(Left_Leaf > Right_Leaf) then
+         return Left_Leaf + 1;
+      else
+         return Right_Leaf + 1;
+      end if;
+   end Get_Height_Helper;
 
    function Get_Num_Leaves(T: Binary_Tree_Access) return Natural;
    -- Returns the number of leaves of the tree T.

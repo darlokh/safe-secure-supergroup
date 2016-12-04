@@ -39,7 +39,11 @@ package Binary_Trees is
     -- from the tree T. Raises an Item_Not_Found_Exception if the item is not 
     -- in the tree T. Frees the memory for the node.
     procedure Remove_All(T: in out Binary_Tree_Access);
-    -- Removes all nodes from the tree T and frees their memory.
+   -- Removes all nodes from the tree T and frees their memory.
+   
+   --helper
+   function Get_Height_Helper(T: Binary_Tree_Access) return Integer;
+   
 private
     procedure Free is new Ada.Unchecked_Deallocation(
         Binary_Tree, 
