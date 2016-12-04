@@ -1,8 +1,8 @@
 Project Task5 is
-  for Source_Dirs use ("src");
+  for Source_Dirs use ("src", "src/test");
   for Object_Dir use "bin";
   for Exec_Dir use ".";
-  for Main use ("main.adb");
+  for Main use ("test.adb", "main.adb");
   package Compiler is
       for Default_Switches ("ada") use ("-g", "-gnato", "-gnatwa", "-gnatQ", "-gnat12");
    end Compiler;

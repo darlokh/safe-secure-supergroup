@@ -5,7 +5,7 @@ package body Put_Integer is
    procedure Put(Item: Integer) is
    begin
       Ada.Integer_Text_IO.Put(Item);
-   end Put_Integer;
+   end Put;
 
 end Put_Integer;
 

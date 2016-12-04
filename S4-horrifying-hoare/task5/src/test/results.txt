@@ -1,0 +1,14 @@
+C:\Users\Kev\Documents\safe-secure-supergroup\S4-horrifying-hoare\task5\test
+(1)  pass.
+(2)  pass.
+(3)  pass.
+(4)  pass.
+(5)  pass.
+(6)  pass.
+(7)  pass.
+(8)  pass.
+(9)  pass.
+
+Script name 'test.ts'; total test result: pass.
+
+[2016-12-05 00:02:29] process terminated successfully, elapsed time: 00.56s

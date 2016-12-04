@@ -18,32 +18,41 @@ package Binary_Trees is
         Parent: Binary_Tree_Access := Null;
     end record;
     
-    procedure Add_Item(T: in out Binary_Tree_Access; Item: Item_Type);
-    -- Adds Item as a leaf node in the tree T at the correct location.
-    -- Raises an Item_Already_In_Tree_Exception if Item already is
-    -- in the tree T.
-    function Create(Item: Item_Type) return Binary_Tree_Access;
-    -- Creates a new tree with a single node that contains the given Item.
-    function Has_Children(T: Binary_Tree_Access) return Boolean;
-    -- Returns True if the tree T possesses any children; False otherwise.
-    function Has_Item(T: Binary_Tree_Access; Item: Item_Type) return Boolean;
-    -- Returns True if the tree T contains the Item; False otherwise.
-    function Get_Height(T: Binary_Tree_Access) return Natural;
-    -- Returns the height of the tree T.
-    function Get_Num_Leaves(T: Binary_Tree_Access) return Natural; 
-    -- Returns the number of leaves of the tree T.
-    procedure Put(T: Binary_Tree_Access);
-    -- Prints all items of the tree T in-order using Put_Item.
-    procedure Remove_Item(T: in out Binary_Tree_Access; Item: Item_Type);
-    -- Removes the node -- and only that node -- which contains the item 
-    -- from the tree T. Raises an Item_Not_Found_Exception if the item is not 
-    -- in the tree T. Frees the memory for the node.
-    procedure Remove_All(T: in out Binary_Tree_Access);
+   -- Adds Item as a leaf node in the tree T at the correct location.
+   -- Raises an Item_Already_In_Tree_Exception if Item already is
+   -- in the tree T.
+   procedure Add_Item(T: in out Binary_Tree_Access; Item: Item_Type);
+   
+   -- Creates a new tree with a single node that contains the given Item.
+   function Create(Item: Item_Type) return Binary_Tree_Access;
+
+   -- Returns True if the tree T possesses any children; False otherwise.
+   function Has_Children(T: Binary_Tree_Access) return Boolean;
+   
+   -- Returns True if the tree T contains the Item; False otherwise.
+   function Has_Item(T: Binary_Tree_Access; Item: Item_Type) return Boolean;
+   
+   -- Returns the height of the tree T.
+   function Get_Height(T: Binary_Tree_Access) return Natural;
+   
+   -- Returns the number of leaves of the tree T.
+   function Get_Num_Leaves(T: Binary_Tree_Access) return Natural; 
+   
+   -- Prints all items of the tree T in-order using Put_Item.
+   procedure Put(T: Binary_Tree_Access);
+   
+   -- Removes the node -- and only that node -- which contains the item 
+   -- from the tree T. Raises an Item_Not_Found_Exception if the item is not 
+   -- in the tree T. Frees the memory for the node.
+   procedure Remove_Item(T: in out Binary_Tree_Access; Item: Item_Type);
+    
    -- Removes all nodes from the tree T and frees their memory.
+   procedure Remove_All(T: in out Binary_Tree_Access);
    
    --helper
-   function Get_Height_Helper(T: Binary_Tree_Access) return Integer;
    -- because Get_Height can not return -1 which is essential for recursion
+   function Get_Height_Helper(T: Binary_Tree_Access) return Integer;
+   
 private
     procedure Free is new Ada.Unchecked_Deallocation(
         Binary_Tree, 

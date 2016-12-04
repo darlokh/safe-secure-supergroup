@@ -37,13 +37,25 @@ package body Binary_Trees is
 
    function Has_Item(T: Binary_Tree_Access; Item: Item_Type) return Boolean is
    begin
-      return T.Item = Item;
+      --case 1: current leaf is empty, set item here
+      if(T = null) then
+         return False;
+      --case 2: current leaf equals item, throw exception
+      elsif(Item = T.Item) then
+         return True;
+      --case 3: item is smaller than current tree item, then go into left leaf
+      elsif(Item < T.Item) then
+         return Has_Item(T=>T.Left,Item =>Item);
+      --case 4: item is greater than current tree item, then go into left leaf
+      else
+         return Has_Item(T=>T.Right,Item =>Item);
+      end if;
    end Has_Item;
 
    function Get_Height(T: Binary_Tree_Access) return Natural is
       -- Returns the height of the tree T.
-      Left_Leaf : Natural := 0;
-      Right_Leaf : Natural := 0;
+      Left_Leaf : Integer := 0;
+      Right_Leaf : Integer := 0;
    begin
       if(T = null) then
          return 0;
@@ -79,16 +91,17 @@ package body Binary_Trees is
    end Get_Height_Helper;
 
    function Get_Num_Leaves(T: Binary_Tree_Access) return Natural is
+      count : Natural := 0;
    begin
-      if(T = null) then
-         return 0;
+      if(T.Left /= null) then
+         count := count + 1 + Get_Num_Leaves(T.Left);
       end if;
 
-      if(T.Left = null and T.Right = null) then
-         return 1;
-      else
-         return Get_Num_Leaves(T.Left) + Get_Num_Leaves(T.Right);
+      if(T.Right /= null) then
+         count := count + 1 + Get_Num_Leaves(T.Right);
       end if;
+
+      return count;
    end Get_Num_Leaves;
 
    procedure Put(T: Binary_Tree_Access) is
