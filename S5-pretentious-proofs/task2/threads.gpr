@@ -1,9 +1,19 @@
 Project Threads is
-  for Source_Dirs use ("src");
-  for Object_Dir use "bin";
-  for Exec_Dir use ".";
-  for Main use ("main.adb");
-  package Compiler is
-    for Default_Switches ("Ada") use ("-gnatwe") & ("-gnatwa") & ("-gnato") & ("-gnat12");
-  end Compiler;
+   for Source_Dirs use ("src");
+   for Object_Dir use "bin";
+   for Exec_Dir use ".";
+   for Main use ("main.adb");
+
+   package Compiler is
+      for Default_Switches ("Ada") use ("-gnato13", "-gnat12");
+   end Compiler;
+
+   package Prove is
+      for Switches use ("--report=fail",
+                        "--proof=progressive",
+                        "--warnings=continue",
+                        "--timeout=5",
+                        "--mode=all");
+   end Prove;
+
 end Threads;

@@ -1,3 +1,4 @@
+pragma SPARK_Mode(on);
 package body Thread is
    procedure Initialize is
    begin
