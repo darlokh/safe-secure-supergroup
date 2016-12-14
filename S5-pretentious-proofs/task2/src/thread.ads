@@ -5,6 +5,8 @@ package Thread is
 
     S: State := None;
 
+   -- assume S doesn't have to be None in precondition, 
+   -- since its not state otherwise in the  
    procedure Initialize with
      Global => (Output => S),
      Post => S = Ready;
