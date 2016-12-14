@@ -12,7 +12,6 @@ package Murmur_Hash2 is
 
    subtype Key_Type   is Byte_Array (Uint64 range 0..7);
    subtype Hash_Type  is Byte_Array (Uint64 range 0..7);
-   subtype State_Type is Byte_Array (Uint64 range 0..7);
 
    -- Hashes the given message under the given seed key and returns
    -- an instance that keeps track of the internal state.
@@ -22,10 +21,12 @@ package Murmur_Hash2 is
 
    -- Transforms a Key_Type to a UInt64
    function Hash_Type_To_UInt64(A: Key_Type) return Uint64;
+   -- Transform 8 Bytes from an Byte Array starting from an Index to a UInt64
+   function Byte_Array_To_UInt64(A: Byte_Array; Start_Index: Uint64) return Uint64;
    -- Transforms a UInt64 to a Key_Type
    function UInt64_To_Hash_Type(A: UInt64) return Key_Type;
-   -- Transform 8 Bytes from an Byte Array starting from an Index to a UInt64
-   function Get_UInt64_from_Byte_Array(A: Byte_Array; Start_Index: Uint64) return Uint64;
    -- Put Hash_Type in the form [x,x,x,x,x,x,x,x]
    procedure Put_Hash_Type (A: Hash_Type);
+   -- Compare two Hash-Types and returns ture if they have the same values
+   function Compare_Hashes(A: Hash_Type; B: Hash_Type) return Boolean;
 end Murmur_Hash2;
