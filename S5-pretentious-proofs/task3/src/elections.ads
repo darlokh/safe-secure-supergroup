@@ -10,7 +10,7 @@ package Elections is
 
     procedure Initialize(Num_Voters: Natural) with
         Global=>(Output =>
-                    (Num_Total_Voters, Votes_Distribution)),
+                    (Num_Votes_Made, Num_Total_Voters, Votes_Distribution)),
         Depends=>(Num_Total_Voters => Num_Voters),
     	Pre=>(Num_Voters>0),
     	Post=>((Num_Total_Voters = Num_Voters)
@@ -20,12 +20,14 @@ package Elections is
     -- Resets the number of made votes and votes for all parties to 0, and 
     -- sets the number of total Voters to the given.
     procedure Vote_For(Vote: Party) with
-        Global=>(Output => Votes_Distribution),
+        Global=>(Output => (Votes_Distribution,
+                            Num_Votes_Made)),
         Pre=>(Vote /= None),
         Post=>(Votes_Distribution /= Zero_Votes_Distribution);
 
     function All_Voters_Voted return Boolean with
-        Global=>(Input => Num_Total_Voters);
+        Global=>(Input => Num_Total_Voters,
+                 Output => Num_Votes_Made);
 
     function Find_Winner return Party with
     	Pre=>(All_Voters_Voted = TRUE);
