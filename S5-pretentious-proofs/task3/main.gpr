@@ -4,6 +4,10 @@ Project Hello is
   for Exec_Dir use ".";
   for Main use ("main.adb");
   package Compiler is
-    for Default_Switches ("Ada") use ("-gnatwe") & ("-gnatwa") & ("-gnato") & ("-gnat12");
+    for Default_Switches ("Ada") use ("-g", "-gnato", "-gnatwa", "-gnatQ", "-gnat12");
   end Compiler;
+
+  package Builder is
+    for Default_Switches ("ada") use ("-g", "-gnat12");
+  end Builder;
 end Hello;
