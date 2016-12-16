@@ -10,8 +10,11 @@ package Elections is
 
     procedure Initialize(Num_Voters: Natural) with
         Global=>(Output =>
-                    (Num_Votes_Made, Num_Total_Voters, Votes_Distribution)),
-        Depends=>(Num_Total_Voters => Num_Voters),
+                    (Num_Votes_Made, Num_Total_Voters,
+                    Votes_Distribution)),
+        Depends=>(Num_Total_Voters => Num_Voters,
+                  Num_Votes_Made => Num_Voters,
+                  Votes_Distribution => null),
     	Pre=>(Num_Voters>0),
     	Post=>((Num_Total_Voters = Num_Voters)
             and
@@ -26,8 +29,7 @@ package Elections is
         Post=>(Votes_Distribution /= Zero_Votes_Distribution);
 
     function All_Voters_Voted return Boolean with
-        Global=>(Input => Num_Total_Voters,
-                 Output => Num_Votes_Made);
+        Global=>(Input => (Num_Total_Voters,Num_Votes_Made));
 
     function Find_Winner return Party with
     	Pre=>(All_Voters_Voted = TRUE);
