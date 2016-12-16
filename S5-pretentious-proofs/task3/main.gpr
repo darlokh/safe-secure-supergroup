@@ -1,13 +1,31 @@
-Project Hello is
+Project Main is
+
+  type Modes is ("Compile", "Analyze");
+  Mode : Modes := External ("MODE", "Compile");  
+
   for Source_Dirs use ("src");
   for Object_Dir use "bin";
-  for Exec_Dir use ".";
+  for Exec_Dir use "bin";
   for Main use ("main.adb");
+
   package Compiler is
-    for Default_Switches ("Ada") use ("-g", "-gnato", "-gnatwa", "-gnatQ", "-gnat12");
+	case Mode is
+		when "Compile" =>
+    			for Switches ("Ada") use ("-g", "-gnato", "-gnatQ", "-gnat12");
+		when "Analyze" =>
+			for Switches ("Ada") use ("-g", "-j2", "-gnato", "-gnatQ", "-gnat12", "-gnato13");
+	end case;
+	
   end Compiler;
+
+package Prove is
+	for Switches use ("--report=all",
+			  "--proof=progressive",
+			  "--warnings=continue",
+			  "--timeout=5");
+end Prove;
 
   package Builder is
     for Default_Switches ("ada") use ("-g", "-gnat12");
   end Builder;
-end Hello;
+end Main;
