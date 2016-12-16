@@ -1,6 +1,7 @@
 with Ada.Text_IO;
 
 package body Elections is
+pragma SPARK_Mode(on);
 
     procedure Initialize(Num_Voters: Natural) is
     begin

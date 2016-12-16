@@ -9,10 +9,13 @@ package Elections is
     Num_Total_Voters: Natural := 0;
 
     procedure Initialize(Num_Voters: Natural) with
-        Global=>(Output => Num_Total_Voters),
+        Global=>(Output =>
+                    (Num_Total_Voters, Votes_Distribution)),
         Depends=>(Num_Total_Voters => Num_Voters),
     	Pre=>(Num_Voters>0),
-    	Post=>(Num_Total_Voters = Num_Voters);
+    	Post=>((Num_Total_Voters = Num_Voters)
+            and
+               (Votes_Distribution = Zero_Votes_Distribution));
 
     -- Resets the number of made votes and votes for all parties to 0, and 
     -- sets the number of total Voters to the given.
