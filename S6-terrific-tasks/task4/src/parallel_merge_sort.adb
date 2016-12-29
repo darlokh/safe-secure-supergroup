@@ -2,7 +2,7 @@ with Ada.Text_IO;
 
 package body Parallel_Merge_Sort is
    
-   task body Sort_Task_Type is
+   task body Sort_Task is
       Input : Array_Access_Type;
       Result : Array_Access_Type;
       left_in , left_out : Array_Access_Type;
@@ -19,7 +19,6 @@ package body Parallel_Merge_Sort is
             right_out := new Array_Type(1..Input'Length/2+(Input'Length mod 2));
          end Set_Unsorted;
          accept Set_Sorted (Sort_Result : in Array_Access_Type) do
-            Ada.Text_IO.Put_Line("Task Started");
             Result := Sort_Result;
          end Set_Sorted;
       or
@@ -78,18 +77,5 @@ package body Parallel_Merge_Sort is
          end;
       end if;
       
-   end Sort_Task_Type;
-
-   procedure Parallel_Merge_Sort(Input: Array_Access_Type;
-                                 Result: Array_Access_Type) is
-   begin
-      declare 
-         test_task : Sort_Task_Type;  
-      begin
-         test_task.Set_Unsorted(Input);
-         test_task.Set_Sorted(Result);
-      end;
-      
-   end Parallel_Merge_Sort;
-
+   end Sort_Task;
 end Parallel_Merge_Sort;
