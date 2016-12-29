@@ -9,5 +9,12 @@ package Parallel_Merge_Sort is
 
    procedure Parallel_Merge_Sort(Input: Array_Access_Type;
                                  Result: Array_Access_Type);
-
+   task type Sort_Task_Type is
+      entry Set_Unsorted(Sort_Input : Array_Access_Type);
+      entry Set_Sorted(Sort_Result : Array_Access_Type);
+   end Sort_Task_Type;
+   
+private 
+   subtype Private_Sort_Task_Type is Sort_Task_Type;
+   
 end Parallel_Merge_Sort;
