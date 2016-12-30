@@ -1,6 +1,9 @@
 with Ada.Text_IO;
+with Ada.Task_Identification;  use Ada.Task_Identification;
 
 package body Parallel_Merge_Sort is
+   
+   Timeout : Duration := 0.0;
    
    task body Sort_Task is
       Input : Array_Access_Type;
@@ -10,21 +13,14 @@ package body Parallel_Merge_Sort is
         
    begin
       Ada.Text_IO.Put_Line("Task Started");
-      select
-         accept Set_Unsorted (Sort_Input : in Array_Access_Type) do
+         accept Set (Sort_Input, Sort_Result : in Array_Access_Type) do
             Input := Sort_Input;
+            Result := Sort_Result;
             left_in := new Array_Type(1..Input'Length/2);
             left_out := new Array_Type(1..Input'Length/2);
             right_in := new Array_Type(1..Input'Length/2+(Input'Length mod 2));
             right_out := new Array_Type(1..Input'Length/2+(Input'Length mod 2));
-         end Set_Unsorted;
-         accept Set_Sorted (Sort_Result : in Array_Access_Type) do
-            Result := Sort_Result;
-         end Set_Sorted;
-      or
-         delay 10.0;
-         Ada.Text_IO.Put_Line("Task Failed");
-      end select;
+      end Set;
       
       -- only 1 left
       if Input'Length = 1 then
@@ -38,13 +34,16 @@ package body Parallel_Merge_Sort is
          declare 
             Left_Sort_Task, Right_Sort_Task : Private_Sort_Task_Type;  
          begin
-            Left_Sort_Task.Set_Unsorted(left_in);
-            Left_Sort_Task.Set_Sorted(left_out);
-         
-            Right_Sort_Task.Set_Unsorted(right_in);
-            Right_Sort_Task.Set_Sorted(right_out);
+            select
+               Left_Sort_Task.Set (left_in, left_out);
+               Right_Sort_Task.Set (right_in, right_out);
+            or 
+               delay Timeout;
+               Abort_Task(Left_Sort_Task'Identity);
+               Abort_Task(Right_Sort_Task'Identity);
+            end select;
          end;
-      
+            
          -- merge
          declare 
             left_attended : Natural := 1;
@@ -76,6 +75,11 @@ package body Parallel_Merge_Sort is
             end loop;
          end;
       end if;
-      
    end Sort_Task;
+      
+   procedure Set_Timeout(New_Timeout : Duration) is
+   begin
+      Timeout := New_Timeout;
+   end Set_Timeout;
+   
 end Parallel_Merge_Sort;

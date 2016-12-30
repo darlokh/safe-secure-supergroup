@@ -2,6 +2,7 @@ with Ada.Text_IO;
 with Parallel_Merge_Sort;
 with GNAT.Strings; use GNAT.Strings;
 with GNAT.Command_Line; use GNAT.Command_Line;
+with Ada.Task_Identification;  use Ada.Task_Identification;
 
 procedure Main is
    -- Declare lists to sort and instanciate sort package.
@@ -29,16 +30,22 @@ begin
 
    Getopt(Config);
 
+   Integer_Sort.Set_Timeout(Duration(Time_Parameter));
+
    Ada.Text_IO.Put_Line(Item => In_List_Path.all);
    Ada.Text_IO.Put_Line(Item => Out_List_Path.all);
-   Ada.Text_IO.Put_Line(Item => Time_Parameter'Image);
 
    Test_In_Array.all := (8,1,6,6,4,3,2,7,9);
    declare
       test_task : Integer_Sort.Sort_Task;
    begin
-      test_task.Set_Unsorted(Test_In_Array);
-      test_task.Set_Sorted(Test_Out_Array);
+      select
+         test_task.Set (Test_In_Array, Test_Out_Array);
+      or delay Duration(Time_Parameter);
+         Ada.Text_IO.Put_Line("Abort Environment");
+         Abort_Task(test_task'Identity);
+         Abort_Task(Current_Task);
+      end select;
    end;
 
    declare
