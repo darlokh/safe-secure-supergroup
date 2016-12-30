@@ -3,7 +3,8 @@ with Ada.Task_Identification;  use Ada.Task_Identification;
 
 package body Parallel_Merge_Sort is
    
-   Timeout : Duration := 0.0;
+   Timeout : Duration := 10.0;
+   Finished : Boolean := False;
    
    task body Sort_Task is
       Input : Array_Access_Type;
@@ -21,7 +22,6 @@ package body Parallel_Merge_Sort is
             right_in := new Array_Type(1..Input'Length/2+(Input'Length mod 2));
             right_out := new Array_Type(1..Input'Length/2+(Input'Length mod 2));
       end Set;
-      
       -- only 1 left
       if Input'Length = 1 then
          Result(1) := Input(1);
@@ -76,10 +76,33 @@ package body Parallel_Merge_Sort is
          end;
       end if;
    end Sort_Task;
+   
+   procedure Parallel_Merge_Sort(Input, Result : Array_Access_Type) is
       
+   begin
+      declare
+         test_task : Sort_Task;
+      begin
+         select
+            test_task.Set (Input, Result);
+         or delay Timeout;
+            Ada.Text_IO.Put_Line("Abort Mission !!!");
+            Abort_Task(test_task'Identity);
+            Abort_Task(Current_Task);
+         end select;
+      end;
+      Finished := true;
+      
+   end;
+   
    procedure Set_Timeout(New_Timeout : Duration) is
    begin
       Timeout := New_Timeout;
    end Set_Timeout;
+   
+   function Is_Finished return Boolean is
+   begin
+      return Finished;
+   end Is_Finished;
    
 end Parallel_Merge_Sort;

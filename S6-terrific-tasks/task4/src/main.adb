@@ -20,6 +20,10 @@ procedure Main is
    Out_List_Path : aliased String_Access;
    Time_Parameter : aliased Integer := 0;
 
+   Answer : Character;
+
+
+
 begin
    Define_Switch (Config, In_List_Path'Access, "-i:",
                   Help => "-i missing, need path to input file");
@@ -36,24 +40,14 @@ begin
    Ada.Text_IO.Put_Line(Item => Out_List_Path.all);
 
    Test_In_Array.all := (8,1,6,6,4,3,2,7,9);
-   declare
-      test_task : Integer_Sort.Sort_Task;
-   begin
-      select
-         test_task.Set (Test_In_Array, Test_Out_Array);
-      or delay Duration(Time_Parameter);
-         Ada.Text_IO.Put_Line("Abort Environment");
-         Abort_Task(test_task'Identity);
-         Abort_Task(Current_Task);
-      end select;
-   end;
 
-   declare
-      test_int : Integer := 0;
-   begin
-      for i in Test_Out_Array'First .. Test_Out_Array'Last loop
-         test_int := Test_Out_Array.all(i);
-         Ada.Text_IO.Put_Line(test_int'Image);
-      end loop;
-   end;
+   Integer_Sort.Parallel_Merge_Sort (Test_In_Array, Test_Out_Array);
+
+   while not Integer_Sort.Is_Finished loop
+      Ada.Text_IO.Get_Immediate(Answer);
+            if Answer = 'q' then
+                Abort_Task(Current_Task);
+                exit;
+            end if;
+   end loop;
 end Main;

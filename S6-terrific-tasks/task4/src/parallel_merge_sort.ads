@@ -12,6 +12,9 @@ package Parallel_Merge_Sort is
    end Sort_Task;
    
    procedure Set_Timeout(New_Timeout : Duration);
+   function Is_Finished return Boolean;
+   
+   procedure Parallel_Merge_Sort(Input, Result : Array_Access_Type);
    
 private 
    subtype Private_Sort_Task_Type is Sort_Task;
