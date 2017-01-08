@@ -40,18 +40,19 @@ package body Parallel_Algorithms is
    procedure Parallel_Sum(Input: Array_Access_Type; Result : out Item_Type ) is
       Task_Left, Task_Right : Adder;
       temp : Natural := 0;
-      value : Natural := 0;
+      --value : Natural := 0;
+      Sum : Item_Type;
    begin
       if Input'Last mod 2 = 0 then
          temp := Input'Last / 2;
-         Task_Left.Set_Slice(Start_Index => 0, End_Index => temp, Item => Input, Sum => Item_Type(value));
+         Task_Left.Set_Slice(0, temp, Input, Sum);
          temp := (Input'Last / 2) + 1;
-         Task_Right.Set_Slice(Start_Index => temp, End_Index => Input'Last, Item => Input, Sum => Item_Type(value));
+         Task_Right.Set_Slice(temp, Input'Last, Input, Sum);
       else
          temp := (Input'Last -1) / 2;
-         Task_Left.Set_Slice(Start_Index => 0, End_Index => temp, Item => Input, Sum => Item_Type(value));
+         Task_Left.Set_Slice(0, temp, Input, Sum);
          temp := (Input'Last +1) / 2;
-         Task_Right.Set_Slice(Start_Index => temp, End_Index => Input'Last, Item => Input, Sum => Item_Type(value));
+         Task_Right.Set_Slice(temp, Input'Last, Input, Sum);
       end if;
    end Parallel_Sum;
 
