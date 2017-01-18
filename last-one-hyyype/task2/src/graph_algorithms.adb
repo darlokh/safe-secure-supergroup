@@ -1,4 +1,5 @@
 with Ada.Containers.Vectors;
+with Ada.Text_IO;
 
 package body Graph_Algorithms is
 
@@ -6,7 +7,78 @@ package body Graph_Algorithms is
    function Find_Shortest_Path(G: Graph_Type;
                                From: Vertex_Type;
                                To: Vertex_Type) return Integer is
+      Shortest_Path_Tree : Graph_Type;
+
    begin
+      -- generate SPT
+      Shortest_Path_Tree.Add_Vertex(From);
+
+      -- loop until STP.vertex.length == G.Vertices.Length
+      while not (Shortest_Path_Tree.Vertices.Last_Index = G.Vertices.Last_Index) loop
+         Ada.Text_IO.Put_Line (" ");
+         Ada.Text_IO.Put_Line (Shortest_Path_Tree.Vertices.Last_Index'Image);
+         Ada.Text_IO.Put_Line (G.Vertices.Last_Index'Image);
+         Ada.Text_IO.Put_Line (" ");
+         -- get ajacent nodes from all leaves
+         declare
+            Tmp_Edge : Edge_Type;
+            Tmp_Vertex : Vertex_Type;
+            Tmp_Edge_Summed_Weight : Integer := Integer'Last;
+         begin
+            for E of G.Edges loop
+               for V of Shortest_Path_Tree.Vertices loop
+                  -- Node is adjacent but not already in SPT
+                  if E.From = V and (not Shortest_Path_Tree.Vertices.Contains(E.To)) then
+                     if Shortest_Path_Tree.Edges.Is_Empty and E.Weight <= Tmp_Edge_Summed_Weight then
+                        Tmp_Edge_Summed_Weight := E.Weight;
+                        Tmp_Vertex := E.To;
+                        Tmp_Edge := E;
+                     else
+                        for I of Shortest_Path_Tree.Edges loop
+                           if (I.To = E.From or I.From = E.From) and I.Weight + E.Weight <= Tmp_Edge_Summed_Weight then
+                              Tmp_Edge_Summed_Weight := I.Weight + E.Weight;
+                              Tmp_Vertex := E.To;
+                              Tmp_Edge := E;
+                           end if;
+                        end loop;
+                     end if;
+                  elsif E.To = V and (not Shortest_Path_Tree.Vertices.Contains(E.From)) then
+                     if Shortest_Path_Tree.Edges.Is_Empty and E.Weight <= Tmp_Edge_Summed_Weight then
+                        Tmp_Edge_Summed_Weight := E.Weight;
+                        Tmp_Vertex := E.From;
+                        Tmp_Edge := E;
+                     else
+                        for I of Shortest_Path_Tree.Edges loop
+                           if (I.To = E.To or I.From = E.To) and I.Weight + E.Weight <= Tmp_Edge_Summed_Weight then
+                              Tmp_Edge_Summed_Weight := I.Weight + E.Weight;
+                              Tmp_Vertex := E.From;
+                              Tmp_Edge := E;
+                           end if;
+                        end loop;
+                     end if;
+                  end if;
+               end loop;
+            end loop;
+            --begin
+            Shortest_Path_Tree.Add_Vertex(Tmp_Vertex);
+            Shortest_Path_Tree.Add_Edge(Tmp_Edge.From, Tmp_Edge.To, Tmp_Edge_Summed_Weight);
+            --exception
+            --   when others =>
+                  -- Notify user
+            --      Ada.Text_IO.Put_Line("Already in Graph exception called in STP ADD");
+            --end;
+         end;
+
+         -- add leaf with shortest path to root
+      end loop;
+
+      -- find Weight in STP
+      for E of Shortest_Path_Tree.Edges loop
+         if E.To = To or E.From = To then
+            return E.Weight;
+         end if;
+      end loop;
+      -- raise Exception
       return 0;
    end Find_Shortest_Path;
 
@@ -42,7 +114,7 @@ package body Graph_Algorithms is
       end;
 
       package Subset is new Ada.Containers.Vectors(Index_Type   => Natural,
-                                                    Element_Type => Graph_Type,
+                                                   Element_Type => Graph_Type,
                                                    "="          => Graph_Equals);
       use Subset;
       Subsets : Subset.Vector;
