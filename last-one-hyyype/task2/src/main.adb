@@ -19,8 +19,8 @@ begin
    Graph_1.Add_Vertex(2);
    Graph_1.Add_Vertex(3);
    Graph_1.Add_Edge(1, 2, 1);
-   Graph_1.Add_Edge(1, 3, 2);
    Graph_1.Add_Edge(2, 3, 1);
+   Graph_1.Add_Edge(1, 3, 2);
 
 
    Test_Int := Int_Graph_Algos.Find_Shortest_Path(G    => Graph_1,
