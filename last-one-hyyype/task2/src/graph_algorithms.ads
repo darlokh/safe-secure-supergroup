@@ -8,7 +8,6 @@ package Graph_Algorithms is
    use Graph_Instance;
    Graph_Not_Connected_Exception : exception;
    No_Valid_Path_Exception : exception;
-   Path_Not_In_Graph_Exception : exception;
    Vertex_Not_Found_Exception : exception;
      
    -- Implements Dijkstra's shortest-path algorithm in the given graph with

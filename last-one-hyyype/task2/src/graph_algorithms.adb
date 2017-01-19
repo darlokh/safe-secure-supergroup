@@ -23,7 +23,7 @@ package body Graph_Algorithms is
             end if;
          end loop;
          if not (To_Found and From_Found) then
-            raise Path_Not_In_Graph_Exception;
+            raise Vertex_Not_Found_Exception;
          end if;
       end;
       -- generate SPT
@@ -72,8 +72,13 @@ package body Graph_Algorithms is
                   end if;
                end loop;
             end loop;
-            Shortest_Path_Tree.Add_Vertex(Tmp_Vertex);
-            Shortest_Path_Tree.Add_Edge(Tmp_Edge.From, Tmp_Edge.To, Tmp_Edge_Summed_Weight);
+            begin
+               Shortest_Path_Tree.Add_Vertex(Tmp_Vertex);
+               Shortest_Path_Tree.Add_Edge(Tmp_Edge.From, Tmp_Edge.To, Tmp_Edge_Summed_Weight);
+            exception
+               when others =>
+                  raise No_Valid_Path_Exception;
+            end;
          end;
          -- add leaf with shortest path to root
       end loop;
@@ -88,6 +93,9 @@ package body Graph_Algorithms is
    end Find_Shortest_Path;
 
    -- Kruskal
+   -- We suppose G is sorted. Otherwise we would have to change the
+   -- specification to include "<" to implement Generic_Sort for the vectors.
+   -- We never change the specification.
    function Find_Min_Spanning_Tree(G: Graph_Type) return Graph_Type is
 
       package Subset is new Ada.Containers.Vectors(Index_Type   => Natural,
@@ -103,6 +111,7 @@ package body Graph_Algorithms is
                return Gr;
             end if;
          end loop;
+         -- can't really happen
          raise Vertex_Not_Found_Exception;
       end Find_Graph;
 
