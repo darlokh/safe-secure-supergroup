@@ -10,21 +10,34 @@ package body Graph_Algorithms is
       Shortest_Path_Tree : Graph_Type;
 
    begin
+      -- check precondition
+      declare
+         From_Found : Boolean := False;
+         To_Found : Boolean := False;
+      begin
+         for V of G.Vertices loop
+            if V = From then
+               From_Found := True;
+            elsif V = To then
+               To_Found := True;
+            end if;
+         end loop;
+         if not (To_Found and From_Found) then
+            raise Path_Not_In_Graph_Exception;
+         end if;
+      end;
       -- generate SPT
       Shortest_Path_Tree.Add_Vertex(From);
 
       -- loop until STP.vertex.length == G.Vertices.Length
       while not (Shortest_Path_Tree.Vertices.Last_Index = G.Vertices.Last_Index) loop
-         Ada.Text_IO.Put_Line (" ");
-         Ada.Text_IO.Put_Line (Shortest_Path_Tree.Vertices.Last_Index'Image);
-         Ada.Text_IO.Put_Line (G.Vertices.Last_Index'Image);
-         Ada.Text_IO.Put_Line (" ");
          -- get ajacent nodes from all leaves
          declare
             Tmp_Edge : Edge_Type;
             Tmp_Vertex : Vertex_Type;
             Tmp_Edge_Summed_Weight : Integer := Integer'Last;
          begin
+            -- I hate my code. Honestly.
             for E of G.Edges loop
                for V of Shortest_Path_Tree.Vertices loop
                   -- Node is adjacent but not already in SPT
@@ -59,59 +72,23 @@ package body Graph_Algorithms is
                   end if;
                end loop;
             end loop;
-            --begin
             Shortest_Path_Tree.Add_Vertex(Tmp_Vertex);
             Shortest_Path_Tree.Add_Edge(Tmp_Edge.From, Tmp_Edge.To, Tmp_Edge_Summed_Weight);
-            --exception
-            --   when others =>
-                  -- Notify user
-            --      Ada.Text_IO.Put_Line("Already in Graph exception called in STP ADD");
-            --end;
          end;
-
          -- add leaf with shortest path to root
       end loop;
 
       -- find Weight in STP
       for E of Shortest_Path_Tree.Edges loop
-         if E.To = To or E.From = To then
+        if E.To = To or E.From = To then
             return E.Weight;
          end if;
       end loop;
-      -- raise Exception
-      return 0;
+      raise No_Valid_Path_Exception;
    end Find_Shortest_Path;
 
    -- Kruskal
    function Find_Min_Spanning_Tree(G: Graph_Type) return Graph_Type is
-
-      function Graph_Equals(L, R : Graph_Type) return Boolean is
-      begin
-         for V of L.Vertices loop
-            if not R.Vertices.Contains(V) then
-               return False;
-            end if;
-         end loop;
-         for V of R.Vertices loop
-            if not L.Vertices.Contains(V) then
-               return False;
-            end if;
-         end loop;
-
-
-         for E of L.Edges loop
-            if not R.Edges.Contains(E) then
-               return False;
-            end if;
-         end loop;
-         for E of R.Edges loop
-            if not L.Edges.Contains(E) then
-               return False;
-            end if;
-         end loop;
-
-         return True;
-      end;
 
       package Subset is new Ada.Containers.Vectors(Index_Type   => Natural,
                                                    Element_Type => Graph_Type,
@@ -130,7 +107,7 @@ package body Graph_Algorithms is
       end Find_Graph;
 
       -- merge two subsets into one
-      procedure Merge_Graph(L, R : in out Graph_Type) is
+      procedure Merge_Graph(L, R : in out Graph_Type; E : Edge_Type) is
          S_Cursor : Cursor;
          New_Graph : Graph_Type;
       begin
@@ -150,17 +127,11 @@ package body Graph_Algorithms is
          Subsets.Delete(S_Cursor);
          S_Cursor := Subsets.Find(L);
          Subsets.Delete(S_Cursor);
-
+         New_Graph.Add_Edge(E.From, E.To, E.Weight);
          Subsets.Append(New_Graph);
       end Merge_Graph;
 
    begin
-      -- Note: edge-vector schould be sorted asc. but thats to hard for me
-      -- take first edge, add to span if vertices are not in connected
-
-      -- sort vector
-      -- TODO
-
       -- split nodes in one Graph each
       for I of G.Vertices loop
          declare
@@ -179,13 +150,12 @@ package body Graph_Algorithms is
             From_Graph := Find_Graph(E.From);
             To_Graph := Find_Graph(E.To);
             if not Graph_Equals(From_Graph, To_Graph) then
-               Merge_Graph(From_Graph, To_Graph);
+               Merge_Graph(From_Graph, To_Graph, E);
             end if;
          end;
       end loop;
 
       if not Graph_Equals(Subsets.First_Element, Subsets.Last_Element) then
-         -- If Graph is not connected
          raise Graph_Not_Connected_Exception;
       end if;
 

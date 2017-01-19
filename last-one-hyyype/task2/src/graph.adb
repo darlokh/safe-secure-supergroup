@@ -107,5 +107,33 @@ package body Graph is
         
       return Result;
    end To_Vertex_Array;
-    
+   
+   function Graph_Equals(L, R : Graph_Type) return Boolean is
+   begin
+      for V of L.Vertices loop
+         if not R.Vertices.Contains(V) then
+            return False;
+         end if;
+      end loop;
+      for V of R.Vertices loop
+         if not L.Vertices.Contains(V) then
+            return False;
+         end if;
+      end loop;
+
+
+      for E of L.Edges loop
+         if not R.Edges.Contains(E) then
+            return False;
+         end if;
+      end loop;
+      for E of R.Edges loop
+         if not L.Edges.Contains(E) then
+            return False;
+         end if;
+      end loop;
+
+      return True;
+   end;
+   
 end Graph;
