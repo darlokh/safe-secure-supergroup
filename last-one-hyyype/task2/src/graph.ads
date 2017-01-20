@@ -63,5 +63,7 @@ package Graph is
 
    function To_Vertex_Array(G: Graph_Type) return Vertex_Array;
    -- Returns an array containing exactly all current vertices of the graph.
+   
+   function Graph_Equals(L, R : Graph_Type) return Boolean;
     
 end Graph;

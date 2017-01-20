@@ -6,9 +6,10 @@ generic
    with package Graph_Instance is new Graph(Vertex_Type, "=");
 package Graph_Algorithms is
    use Graph_Instance;
-   Graph_Not_Connected_Exception: exception;
-   Vertex_Not_Found_Exception: exception;
-    
+   Graph_Not_Connected_Exception : exception;
+   No_Valid_Path_Exception : exception;
+   Vertex_Not_Found_Exception : exception;
+     
    -- Implements Dijkstra's shortest-path algorithm in the given graph with
    -- edge weights. Raises an exception if there is no path connecting From
    -- and To. Raises an exception if From and/or To is not in G.
