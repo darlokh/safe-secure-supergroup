@@ -32,11 +32,11 @@ package body GF2n is
    end Find_Inverse;
 
    function GCD(X: Element_Type; Y: Element_Type) return Element_Type is
-      R : Element_Type := 0;
+      R : Element_Type := Element_Type'Last;
       Xi : Element_Type := 0;
       Yi : Element_Type := 0;
    begin
-      --exchange if Y isn't the smaller value
+      --exchange that X is the highest polynom
       if X < Y then
          Xi := Y;
          Yi := X;
@@ -45,28 +45,23 @@ package body GF2n is
          Yi := Y;
       end if;
 
-      -- loop from highest polynom to lowest in field under biggest polynom X
-      for Q in reverse 1..Xi loop
-         -- find Quotient Q
-         if Q * Yi <= Xi then
-            R := Xi - (Q * Yi);
-            -- if rest is 0, Y is the founded GCD
-            if R = 0 then
-               return Yi;
-            -- if not, iterate again with X:=Y and Y:=R
-            else
-               return GCD(Yi,R);
+      GCD_Loop :
+      loop
+         -- loop from highest polynom to lowest in field under bigger polynom X
+         for Q in reverse 1..Xi loop
+            -- find Quotient Q
+            if Q * Yi <= Xi then
+               R := Xi - (Q * Yi);
+               -- if rest is 0, Yi is the founded GCD
+               exit GCD_Loop when R = 0;
+               -- if not, iterate again with Xi:=Yi and Yi:=R
+               Xi := Yi;
+               Yi := R;
             end if;
-         end if;
-      end loop;
-      -- else case? GCD should at least always be 1
-      return -1;
+         end loop;
+      end loop GCD_Loop;
 
---        for I in reverse 1..X loop
---           if (X mod I = 0) and (Y mod I = 0) then
---              return I;
---           end if;
---        end loop;
+      return Yi;
    end GCD;
 
    function Is_Primitive(X: Element_Type) return Boolean is
